@@ -363,6 +363,68 @@ textarea:focus,
   font-size: 0.92rem;
 }
 
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(100%, 95vw);
+    padding: 2.25rem 0 2.8rem;
+  }
+
+  .hero {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    max-width: none;
+    font-size: clamp(1.6rem, 8.2vw, 2.25rem);
+    line-height: 1.06;
+  }
+
+  .subtitle {
+    margin-top: 0.72rem;
+    font-size: 0.97rem;
+  }
+
+  .sister-site {
+    margin-top: 0.9rem;
+    padding: 0.72rem 0.75rem;
+  }
+
+  .prompt-card {
+    padding: 0.9rem;
+    border-radius: 18px;
+    gap: 0.72rem;
+  }
+
+  .field-tabs {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .field-tabs button {
+    flex: 1;
+    font-size: 0.82rem;
+    padding: 0.46rem 0.5rem;
+  }
+
+  textarea {
+    min-height: 86px;
+  }
+
+  .stage {
+    min-height: 300px;
+    margin-top: 1.25rem;
+  }
+
+  .bubble-wrap {
+    min-height: 320px;
+  }
+
+  .results-heading {
+    font-size: 1.12rem;
+  }
+}
+
 .results .author {
   margin-bottom: 0.35rem;
   font-weight: 700;

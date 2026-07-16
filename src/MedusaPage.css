@@ -22,39 +22,6 @@
     linear-gradient(180deg, #faf6ef 0%, #f8efe2 100%);
 }
 
-.medusa-shell::before,
-.medusa-shell::after {
-  content: "";
-  position: absolute;
-  border-radius: 999px;
-  z-index: -1;
-  filter: blur(14px);
-}
-
-.medusa-shell::before {
-  width: 240px;
-  height: 240px;
-  top: -34px;
-  left: -64px;
-  background: radial-gradient(
-    circle at 34% 34%,
-    rgba(255, 62, 165, 0.56),
-    rgba(232, 255, 63, 0.2) 72%
-  );
-}
-
-.medusa-shell::after {
-  width: 220px;
-  height: 220px;
-  right: -54px;
-  bottom: 44px;
-  background: radial-gradient(
-    circle at 62% 38%,
-    rgba(255, 62, 165, 0.3),
-    rgba(116, 122, 82, 0.14) 72%
-  );
-}
-
 .medusa-hero {
   text-align: left;
   margin-bottom: 2rem;
@@ -95,16 +62,12 @@
   font-size: 0.76rem;
 }
 
-.medusa-hero h1,
-.medusa-card h2 {
-  color: var(--espresso);
-}
-
 .medusa-hero h1 {
   margin: 0;
   font-size: clamp(2rem, 6vw, 4rem);
   line-height: 0.97;
   max-width: 18ch;
+  color: var(--espresso);
 }
 
 .medusa-subtitle {
@@ -119,18 +82,11 @@
 }
 
 .mirror-stage {
-  margin: 0 auto 0.6rem;
-  width: min(560px, 96%);
-  min-height: auto;
+  margin: 0 auto 0.7rem;
+  width: min(940px, 98%);
   display: grid;
-  grid-template-rows: auto auto;
-  position: relative;
+  gap: 0.5rem;
   justify-items: center;
-  padding: 0.2rem 0;
-}
-
-.mirror-stage::after {
-  content: none;
 }
 
 .mirror-invocation {
@@ -140,120 +96,88 @@
   letter-spacing: 0.02em;
   font-weight: 800;
   color: color-mix(in srgb, var(--espresso) 82%, var(--pink) 18%);
-  text-shadow: 0 0 10px rgba(255, 62, 165, 0.35);
 }
 
 .mirror-prompt {
-  margin: 0.5rem 0 0.95rem;
+  margin: 0;
   text-align: center;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   color: color-mix(in srgb, var(--espresso) 76%, var(--olive) 24%);
 }
 
-.mirror-glass {
-  position: relative;
-  width: min(360px, 92%);
-  height: min(470px, 68vh);
-  margin: 0.15rem auto 0;
-  border-radius: 50% / 40%;
-  background: linear-gradient(145deg, #ccc, #eee);
-  border: 2px solid rgba(34, 28, 40, 0.28);
-  box-shadow:
-    0 0 30px rgba(255, 255, 255, 0.4),
-    inset 0 0 50px rgba(255, 255, 255, 0.6),
-    inset 0 0 100px rgba(200, 200, 255, 0.3);
-  padding: 1.35rem 1rem 1.1rem;
-  overflow: hidden;
-  animation: mirror-glow 3s infinite alternate;
-}
-
-.mirror-glass::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
-  transform: rotate(25deg);
-  animation: mirror-shine 5s infinite linear;
-  pointer-events: none;
-}
-
-.mirror-glass::after {
-  content: "";
-  position: absolute;
-  inset: 12%;
-  border-radius: 999px;
-  border: 2px solid rgba(109, 91, 166, 0.24);
-  transform: scale(0.65);
-  opacity: 0;
-  animation: medusa-ripple 900ms ease-out;
-  pointer-events: none;
-}
-
-.reflection-grid {
-  margin: 0;
+.mirror-options {
+  margin: 0.2rem 0 0;
   padding: 0;
-  width: min(420px, 100%);
-  margin-inline: auto;
+  width: 100%;
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.2rem;
-  justify-items: center;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
 }
 
-.reflection-pill {
+.reflection-mirror {
+  position: relative;
   width: 100%;
-  text-align: center;
-  border: 0;
-  border-radius: 0;
-  padding: 0.35rem 0;
-  background: transparent;
+  min-height: 190px;
+  border: 2px solid rgba(34, 28, 40, 0.28);
+  border-radius: 50% / 40%;
+  padding: 1rem 0.75rem;
+  background: linear-gradient(145deg, #ccc, #eee);
   color: color-mix(in srgb, var(--espresso) 88%, var(--olive) 12%);
   font: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 0;
+  justify-content: center;
+  text-align: center;
   cursor: pointer;
-  transition: color 140ms ease, transform 140ms ease;
+  overflow: hidden;
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.32),
+    inset 0 0 26px rgba(255, 255, 255, 0.5),
+    inset 0 0 60px rgba(200, 200, 255, 0.2);
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 180ms ease;
 }
 
-.reflection-pill.active {
-  color: color-mix(in srgb, var(--pink) 74%, var(--espresso) 26%);
-  text-decoration: underline;
-  text-underline-offset: 0.22rem;
+.reflection-mirror::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, transparent 62%);
+  transform: rotate(25deg);
+  animation: mirror-shine 5.6s infinite linear;
+  pointer-events: none;
 }
 
-.reflection-pill:hover {
-  color: color-mix(in srgb, var(--pink) 64%, var(--espresso) 36%);
+.reflection-mirror:hover {
   transform: translateY(-1px);
 }
 
-.reflection-pill:focus-visible,
-.collection-pill:focus-visible {
+.reflection-mirror.active {
+  border-color: color-mix(in srgb, var(--pink) 66%, var(--olive) 34%);
+  box-shadow:
+    0 0 32px rgba(255, 62, 165, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.62),
+    inset 0 0 70px rgba(255, 62, 165, 0.16);
+}
+
+.reflection-mirror:focus-visible,
+.collection-pill:focus-visible,
+.recommendations-toggle:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--pink) 72%, var(--acid) 28%);
   outline-offset: 2px;
 }
 
-.reflection-pill-line {
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 0;
-}
-
-.collection-chooser {
-  margin-top: 0.55rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.46rem;
+.reflection-mirror-label {
+  position: relative;
+  z-index: 1;
+  line-height: 1.35;
+  text-wrap: balance;
 }
 
 .collection-block {
@@ -271,6 +195,13 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--espresso) 70%, var(--olive) 30%);
+}
+
+.collection-chooser {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.46rem;
 }
 
 .collection-pill {
@@ -337,55 +268,21 @@
   margin-top: 0.3rem;
 }
 
-.collection-panel li a {
+.collection-panel li .book-title-link {
   color: color-mix(in srgb, var(--pink) 78%, var(--espresso) 22%);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--pink) 62%, var(--olive) 38%);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--pink) 62%, var(--olive) 38%);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
-.collection-panel li a:hover {
+.collection-panel li .book-title-link:hover {
   color: var(--espresso);
-  border-bottom-color: color-mix(in srgb, var(--acid) 60%, var(--pink) 40%);
+  text-decoration-color: color-mix(in srgb, var(--acid) 60%, var(--pink) 40%);
 }
 
-.medusa-consult a {
-  color: var(--pink);
-  font-weight: 700;
+.collection-panel li .book-author {
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--pink) 62%, var(--olive) 38%);
-}
-
-.medusa-consult a:hover {
-  color: var(--espresso);
-  border-bottom-color: color-mix(in srgb, var(--acid) 60%, var(--pink) 40%);
-}
-
-@keyframes medusa-ripple {
-  0% {
-    transform: scale(0.22);
-    opacity: 0.75;
-  }
-
-  100% {
-    transform: scale(1.05);
-    opacity: 0;
-  }
-}
-
-@keyframes mirror-glow {
-  0% {
-    box-shadow:
-      0 0 30px rgba(255, 255, 255, 0.4),
-      inset 0 0 50px rgba(255, 255, 255, 0.6),
-      inset 0 0 100px rgba(200, 200, 255, 0.3);
-  }
-
-  100% {
-    box-shadow:
-      0 0 60px rgba(173, 216, 230, 0.8),
-      inset 0 0 80px rgba(255, 255, 255, 0.9),
-      inset 0 0 100px rgba(200, 200, 255, 0.4);
-  }
 }
 
 @keyframes mirror-shine {
@@ -395,6 +292,12 @@
 
   100% {
     transform: translateX(100%) rotate(25deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .mirror-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -408,20 +311,14 @@
     top: -0.2rem;
   }
 
-  .reflection-grid {
+  .mirror-options {
     grid-template-columns: 1fr;
+    gap: 0.55rem;
   }
 
-  .mirror-stage {
-    width: 100%;
-    min-height: 72vh;
-    padding: 0.95rem 0.7rem 1.1rem;
-  }
-
-  .mirror-glass {
-    width: min(330px, 96%);
-    height: min(440px, 66vh);
-    padding: 1.15rem 0.8rem 0.95rem;
+  .reflection-mirror {
+    min-height: 120px;
+    border-radius: 44% / 38%;
   }
 
   .collection-block,

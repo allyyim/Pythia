@@ -4,7 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
 import MedusaPage from "./MedusaPage.tsx";
-import HecatePage from "./HecatePage.tsx";
+import NyxPage from "./NyxPage.tsx";
+import AriadnePage from "./AriadnePage.tsx";
+import JanusPage from "./JanusPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -12,8 +14,12 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/medusa" element={<MedusaPage />} />
-        <Route path="/hecate" element={<HecatePage />} />
-        <Route path="/heacte" element={<HecatePage />} />
+        <Route path="/nyx" element={<NyxPage />} />
+        <Route path="/ariadne" element={<AriadnePage />} />
+        <Route path="/cassandra" element={<AriadnePage />} />
+        <Route path="/janus" element={<JanusPage />} />
+        <Route path="/hecate" element={<NyxPage />} />
+        <Route path="/heacte" element={<NyxPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -1,0 +1,279 @@
+:root {
+  --janus-navy: #395289;
+  --janus-electric: #8aa7ff;
+  --janus-deep: #2f4573;
+  --janus-sky: #edf4ff;
+  --janus-silver: #dfe8f4;
+}
+
+.janus-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(138, 167, 255, 0.42), transparent 40%),
+    radial-gradient(circle at 82% 16%, rgba(223, 232, 244, 0.44), transparent 42%),
+    radial-gradient(circle at 76% 78%, rgba(57, 82, 137, 0.3), transparent 48%),
+    radial-gradient(circle at 34% 70%, rgba(151, 178, 255, 0.24), transparent 50%),
+    linear-gradient(160deg, #e2ebff 0%, #cfdcf9 42%, #bdcff2 72%, #b0c4ed 100%);
+}
+
+.janus-shell {
+  width: min(980px, 92vw);
+  margin: 0 auto;
+  padding: 4rem 0 5rem;
+  color: #1c2a4b;
+}
+
+.janus-hero {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.janus-top-back-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--janus-electric) 44%, var(--janus-silver) 56%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--janus-deep) 70%, var(--janus-electric) 30%),
+    color-mix(in srgb, var(--janus-navy) 62%, var(--janus-silver) 38%)
+  );
+  color: #f8fbff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 0 0.68rem;
+}
+
+.janus-top-back-link:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--janus-navy) 52%, var(--janus-electric) 48%),
+    color-mix(in srgb, var(--janus-navy) 58%, var(--janus-silver) 42%)
+  );
+}
+
+.janus-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.85rem;
+  background: linear-gradient(
+    125deg,
+    color-mix(in srgb, var(--janus-deep) 75%, var(--janus-navy) 25%),
+    color-mix(in srgb, var(--janus-navy) 70%, var(--janus-electric) 30%)
+  );
+  color: #f6f9ff;
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  font-weight: 700;
+  box-shadow: 0 6px 14px rgba(31, 49, 87, 0.26);
+}
+
+.janus-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 0.97;
+}
+
+.janus-subtitle {
+  margin-top: 1rem;
+  max-width: 62ch;
+  color: color-mix(in srgb, #223458 72%, var(--janus-navy) 28%);
+  font-size: 1.05rem;
+}
+
+.janus-invocation {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--janus-deep) 78%, var(--janus-electric) 22%);
+}
+
+.janus-paths-heading {
+  margin: 0.3rem 0 0;
+  text-align: center;
+  font-size: 1.45rem;
+  color: color-mix(in srgb, var(--janus-deep) 72%, var(--janus-electric) 28%);
+}
+
+.janus-card {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(168, 192, 255, 0.24), transparent 45%),
+    linear-gradient(
+      160deg,
+      rgba(71, 98, 154, 0.9) 0%,
+      rgba(93, 122, 182, 0.88) 52%,
+      rgba(109, 138, 196, 0.86) 100%
+    );
+  border: 1px solid color-mix(in srgb, var(--janus-electric) 50%, var(--janus-silver) 50%);
+  border-radius: 28px;
+  padding: 1.25rem 1.3rem;
+  box-shadow: 0 18px 34px rgba(21, 37, 73, 0.32);
+}
+
+.janus-card h2 {
+  margin: 0 0 0.55rem;
+  color: color-mix(in srgb, var(--janus-electric) 54%, var(--janus-silver) 46%);
+}
+
+.janus-card p {
+  margin: 0;
+  color: color-mix(in srgb, #f5f9ff 72%, var(--janus-silver) 28%);
+}
+
+.janus-grid {
+  margin-top: 1.15rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.janus-track-toggle {
+  color: color-mix(in srgb, var(--janus-electric) 45%, var(--janus-silver) 55%);
+}
+
+.janus-results h3 {
+  color: color-mix(in srgb, var(--janus-deep) 78%, var(--janus-navy) 22%);
+}
+
+.janus-recommendations-toggle {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.janus-recommendations-toggle h3 {
+  margin: 0;
+}
+
+.janus-recommendations-arrow {
+  font-size: 2rem;
+  line-height: 1;
+  color: color-mix(in srgb, var(--janus-deep) 70%, var(--janus-navy) 30%);
+}
+
+.janus-track-toggle {
+  width: 100%;
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--janus-electric) 42%, var(--janus-silver) 58%);
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--janus-deep) 72%, var(--janus-electric) 28%),
+    color-mix(in srgb, var(--janus-navy) 62%, var(--janus-silver) 38%)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  text-align: left;
+  padding: 0.62rem 0.74rem;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.janus-track-toggle strong {
+  font-size: 1rem;
+  color: color-mix(in srgb, var(--janus-silver) 80%, #ffffff 20%);
+}
+
+.janus-track-prompt {
+  margin-top: 0.7rem;
+  font-weight: 700;
+  color: color-mix(in srgb, #ebf5ff 80%, var(--janus-silver) 20%);
+}
+
+.janus-chip-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.janus-chip {
+  width: 100%;
+  text-align: left;
+  border: 1px solid color-mix(in srgb, var(--janus-electric) 42%, var(--janus-silver) 58%);
+  border-radius: 16px;
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--janus-deep) 66%, var(--janus-electric) 34%),
+    color-mix(in srgb, var(--janus-navy) 58%, var(--janus-silver) 42%)
+  );
+  color: #f4f9ff;
+  padding: 0.72rem 0.78rem;
+  cursor: pointer;
+}
+
+.janus-chip span {
+  display: block;
+  font-weight: 800;
+}
+
+.janus-chip small {
+  display: block;
+  margin-top: 0.22rem;
+  color: color-mix(in srgb, #ebf5ff 80%, var(--janus-silver) 20%);
+}
+
+.janus-chip.active {
+  border-color: color-mix(in srgb, var(--janus-electric) 52%, white 48%);
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--janus-electric) 58%, var(--janus-navy) 42%),
+    color-mix(in srgb, var(--janus-silver) 54%, var(--janus-navy) 46%)
+  );
+  box-shadow: 0 10px 20px rgba(28, 47, 88, 0.28);
+}
+
+.janus-results {
+  margin-top: 1rem;
+}
+
+.janus-result-context {
+  margin-top: 0.6rem;
+  color: color-mix(in srgb, #ebf5ff 72%, var(--janus-silver) 28%);
+}
+
+.janus-result-context strong {
+  color: color-mix(in srgb, var(--janus-electric) 46%, var(--janus-silver) 54%);
+}
+
+.janus-results ul {
+  margin: 0.9rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.janus-results li + li {
+  margin-top: 0.75rem;
+}
+
+.janus-results a {
+  color: color-mix(in srgb, var(--janus-deep) 76%, var(--janus-navy) 24%);
+  font-weight: 800;
+}
+
+.janus-results li p {
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .janus-grid {
+    grid-template-columns: 1fr;
+  }
+}

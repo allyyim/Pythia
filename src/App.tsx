@@ -380,8 +380,18 @@ function App() {
               </Link>
             </li>
             <li>For those who aren't afraid of the dark, visit:
-              <Link to="/hecate" className="sister-link">
-                Hecate
+              <Link to="/nyx" className="sister-link">
+                Nyx
+              </Link>
+            </li>
+            <li>For those who follow the thread through the maze, visit:
+              <Link to="/ariadne" className="sister-link">
+                Ariadne
+              </Link>
+            </li>
+            <li>For those who seek duality, visit:
+              <Link to="/janus" className="sister-link">
+                Janus
               </Link>
             </li>
           </ul>

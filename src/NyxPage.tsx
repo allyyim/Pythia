@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./HecatePage.css";
+import "./NyxPage.css";
 
-function HecatePage() {
+function NyxPage() {
   return (
     <div className="hecate-page">
       <main className="hecate-shell">
@@ -10,17 +10,18 @@ function HecatePage() {
             <span aria-hidden="true">←</span>
             <span>Back</span>
           </Link>
-          <p className="hecate-eyebrow">Sister Site</p>
-          <h1>Hecate</h1>
+          <p className="hecate-eyebrow">Nyx</p>
+          <h1>Nyx</h1>
           <p className="hecate-subtitle">
-            The night-side route for atmospheric, supernatural, and cosmic horror where haunted places, forgotten rituals, ancient evils, and the unknown wait just beyond the veil.
+            A nightmare-lit route for cosmic dread, haunted rituals, and the slow unmaking
+            of what should have stayed buried.
           </p>
         </header>
 
-        <section className="hecate-card" aria-label="Hecate intro">
+        <section className="hecate-card" aria-label="Nyx intro">
           <h2>Coming Soon</h2>
           <p>
-            Hecate is now a live React route. Next step is shaping its own subgenre map and
+            Nyx is now a live React route. Next step is shaping its own subgenre map and
             recommendation engine.
           </p>
         </section>
@@ -29,4 +30,4 @@ function HecatePage() {
   );
 }
 
-export default HecatePage;
+export default NyxPage;

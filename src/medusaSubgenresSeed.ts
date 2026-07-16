@@ -4,6 +4,208 @@ export type MedusaSubgenre = {
   recommendations: string[];
 };
 
+export type ReflectionCollection = {
+  label: string;
+  sourceSubgenres: string[];
+};
+
+export type ReflectionPrompt = {
+  id: string;
+  icon: string;
+  line: string;
+  keywords: string[];
+  collections: ReflectionCollection[];
+};
+
+export const REFLECTION_PROMPTS: ReflectionPrompt[] = [
+  {
+    id: "identity",
+    icon: "🪞",
+    line: "I don't recognize myself anymore.",
+    keywords: ["identity", "myself", "recognize", "becoming", "double", "doppelganger"],
+    collections: [
+      {
+        label: "Identity Crisis",
+        sourceSubgenres: ["Unreliable Women", "Outsider Women", "The Spiral"],
+      },
+      {
+        label: "Doppelgangers",
+        sourceSubgenres: ["Mirror Girls"],
+      },
+      {
+        label: "Becoming",
+        sourceSubgenres: ["Villain Origins", "Mythic Women", "Medusa Mode"],
+      },
+    ],
+  },
+  {
+    id: "beauty",
+    icon: "💄",
+    line: "Beauty feels like a performance.",
+    keywords: ["beauty", "body", "femininity", "performance", "pretty", "appearance"],
+    collections: [
+      {
+        label: "Beauty Horror",
+        sourceSubgenres: ["Medusa Mode", "Glamour & Rot"],
+      },
+      {
+        label: "Body Horror",
+        sourceSubgenres: ["Body Betrayal"],
+      },
+      {
+        label: "Femininity",
+        sourceSubgenres: ["Forbidden Fruit", "Gothic Girls", "Obsessive Desire"],
+      },
+    ],
+  },
+  {
+    id: "rage",
+    icon: "🩸",
+    line: "I'm angry in ways I can't explain.",
+    keywords: ["angry", "rage", "furious", "femgore", "revenge", "violence"],
+    collections: [
+      {
+        label: "Female Rage",
+        sourceSubgenres: ["Female Rage"],
+      },
+      {
+        label: "Femgore",
+        sourceSubgenres: ["Female Rage", "Body Betrayal"],
+      },
+    ],
+  },
+  {
+    id: "gaze",
+    icon: "👁",
+    line: "I feel like everyone is watching me.",
+    keywords: ["watching", "gaze", "society", "seen", "judge", "performance", "satire"],
+    collections: [
+      {
+        label: "Society's Gaze",
+        sourceSubgenres: ["Disoriented Daughters", "Glamour & Rot", "Outsider Women"],
+      },
+      {
+        label: "Performance",
+        sourceSubgenres: ["Obsessed Artists", "Unreliable Women", "Girl Failure"],
+      },
+      {
+        label: "Social Satire",
+        sourceSubgenres: ["Disoriented Daughters", "Girl Failure", "Glamour & Rot"],
+      },
+    ],
+  },
+  {
+    id: "weird",
+    icon: "🐇",
+    line: "Reality feels slightly... off.",
+    keywords: ["surreal", "off", "dream", "weird", "unreal", "strange", "logic"],
+    collections: [
+      {
+        label: "Surreal",
+        sourceSubgenres: ["Surreal Feminine", "The Spiral"],
+      },
+      {
+        label: "Dream Logic",
+        sourceSubgenres: ["The Spiral", "Surreal Feminine", "Existential Horror"],
+      },
+      {
+        label: "Weird Girl",
+        sourceSubgenres: ["Girl Failure", "The Spiral", "Surreal Feminine"],
+      },
+    ],
+  },
+];
+
+export const MEDUSA_AUTHOR_BY_TITLE: Record<string, string> = {
+  "acts of desperation": "Megan Nolan",
+  "alias grace": "Margaret Atwood",
+  animal: "Lisa Taddeo",
+  "big swiss": "Jen Beagin",
+  "bunny": "Mona Awad",
+  "boy parts": "Eliza Clark",
+  "carmilla": "Sheridan Le Fanu",
+  "chlorine": "Jade Song",
+  circe: "Madeline Miller",
+  "cult classic": "Sloane Crosley",
+  "convenience store woman": "Sayaka Murata",
+  disorientation: "Elaine Hsieh Chou",
+  "earthlings": "Sayaka Murata",
+  eileen: "Ottessa Moshfegh",
+  "girl, serpent, thorn": "Melissa Bashardoust",
+  "gone girl": "Gillian Flynn",
+  "her body and other parties": "Carmen Maria Machado",
+  "luster": "Raven Leilani",
+  "life ceremony": "Sayaka Murata",
+  "milk fed": "Melissa Broder",
+  "my year of rest and relaxation": "Ottessa Moshfegh",
+  "nightbitch": "Rachel Yoder",
+  "our wives under the sea": "Julia Armfield",
+  "paradais": "Fernanda Melchor",
+  rebecca: "Daphne du Maurier",
+  rouge: "Mona Awad",
+  "stone blind": "Natalie Haynes",
+  "sirens muses": "Antonia Angress",
+  "the bell jar": "Sylvia Plath",
+  "the bloody chamber": "Angela Carter",
+  "the guest": "Emma Cline",
+  "the pisces": "Melissa Broder",
+  "the vegetarian": "Han Kang",
+  "woman, eating": "Claire Kohda",
+  yellowface: "R. F. Kuang",
+};
+
+const MEDUSA_BOOK_BLURBS: Record<string, string> = {
+  yellowface: "Literary ambition curdles into theft, performance, and public unraveling.",
+  bunny: "A cult-like campus clique turns belonging into a surreal, predatory ritual.",
+  "julie chan is dead": "Identity becomes a costume that starts consuming the wearer.",
+  doppelganger: "Political and personal doubles collide until certainty becomes impossible.",
+  rebecca: "A shadow self haunts every room, rewriting desire as dread.",
+  "gone girl": "Narrative control itself becomes a weapon sharper than any confession.",
+  "boy parts": "Artistic obsession mutates into voyeurism, cruelty, and self-erasure.",
+  "the guest": "Social trespass spirals as reinvention edges into delusion.",
+  "the vegetarian": "Refusal of social expectations becomes a visceral act of transformation.",
+  "the bloody chamber": "Desire, danger, and gothic glamour braid into beautiful menace.",
+  circe: "Exile and power forge a self that no longer asks permission.",
+  nightbitch: "Domestic pressure cracks into feral metamorphosis and hard-won agency.",
+  animal: "Grief and appetite drive a volatile search for control and release.",
+  "the bell jar": "Psychic pressure closes in until language itself feels airless.",
+  "our wives under the sea": "Love endures while the uncanny slowly rewrites the body.",
+  earthlings: "Normalcy collapses into a brutal challenge to social conditioning.",
+  "convenience store woman": "A meticulously performed life reveals the violence of fitting in.",
+};
+
+function normalizeBookKey(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+export function getMedusaBookBlurb(collectionLabel: string, title: string) {
+  const key = normalizeBookKey(title);
+  const fromBook = MEDUSA_BOOK_BLURBS[key];
+
+  if (fromBook) {
+    return fromBook;
+  }
+
+  const collectionTone: Record<string, string> = {
+    "Identity Crisis": "Identity splinters and the self starts feeling unfamiliar.",
+    Doppelgangers: "A mirrored double turns resemblance into threat.",
+    Becoming: "Transformation hardens into a new, unruly power.",
+    "Beauty Horror": "Beauty rituals expose control, decay, and obsession.",
+    "Body Horror": "The body becomes the site where fear turns physical.",
+    Femininity: "Femininity is staged, judged, and pushed past its limits.",
+    "Female Rage": "Anger refuses containment and becomes propulsion.",
+    Femgore: "Rage and violence fuse into raw, transgressive change.",
+    "Society's Gaze": "Public scrutiny reshapes identity into performance.",
+    Performance: "Persona overtakes personhood under social pressure.",
+    "Social Satire": "Satire strips normality to reveal underlying cruelty.",
+    Surreal: "Reality bends toward dream logic and emotional distortion.",
+    "Dream Logic": "Cause and effect unravel like a waking nightmare.",
+    "Weird Girl": "Outsider strangeness becomes a source of force.",
+  };
+
+  return collectionTone[collectionLabel] ?? "Desire and danger move together through this uncanny pick.";
+}
+
 export const MEDUSA_SUBGENRES: MedusaSubgenre[] = [
   {
     title: "🐍 Medusa Mode — Beauty horror & monstrous women",

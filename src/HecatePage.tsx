@@ -13,7 +13,7 @@ function HecatePage() {
           <p className="hecate-eyebrow">Sister Site</p>
           <h1>Hecate</h1>
           <p className="hecate-subtitle">
-            The night-side route for shadowy, uncanny, and occult-adjacent reads.
+            The night-side route for atmospheric, supernatural, and cosmic horror where haunted places, forgotten rituals, ancient evils, and the unknown wait just beyond the veil.
           </p>
         </header>
 

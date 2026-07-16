@@ -366,7 +366,7 @@ function App() {
         <h1>Tell me a title, genre, or a vibe. I will hand you 5 reads.</h1>
         <p className="subtitle">
           A free, oracle-powered recommendation engine: instant curated matches,
-          Open Library discovery, and lightweight semantic scoring. Named for
+          Open Library discovery, and lightweight semantic scoring. Named after
           Pythia, the Oracle of Delphi, it "prophesies" your next obsession.
         </p>
       </header>
@@ -434,7 +434,7 @@ function App() {
         )}
 
         <button className="submit" type="submit" disabled={isLoading}>
-          {isLoading ? "Consulting the shelf..." : "Recommend!"}
+          {isLoading ? "Consulting the shelf..." : "Recommend"}
         </button>
         {!canSubmit && (
           <p className="helper-text">Add any one: Book title, Genre, or Vibes.</p>

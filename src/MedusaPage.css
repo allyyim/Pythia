@@ -114,199 +114,288 @@
   font-size: 1.05rem;
 }
 
-.medusa-card {
-  background: color-mix(in srgb, var(--cream) 90%, var(--pink) 10%);
-  border: 1px solid color-mix(in srgb, var(--pink) 58%, var(--olive) 42%);
-  border-radius: 28px;
-  padding: 1.25rem 1.3rem;
+.medusa-consult {
   margin-bottom: 1rem;
-  box-shadow: 0 16px 36px rgba(255, 62, 165, 0.2);
 }
 
-.medusa-card h2 {
-  margin-top: 0;
-  margin-bottom: 0.55rem;
-  font-size: 1.25rem;
+.mirror-stage {
+  margin: 0 auto 0.6rem;
+  width: min(560px, 96%);
+  min-height: auto;
+  display: grid;
+  grid-template-rows: auto auto;
+  position: relative;
+  justify-items: center;
+  padding: 0.2rem 0;
 }
 
-.medusa-subgenres-header {
+.mirror-stage::after {
+  content: none;
+}
+
+.mirror-invocation {
+  margin: 0;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--espresso) 82%, var(--pink) 18%);
+  text-shadow: 0 0 10px rgba(255, 62, 165, 0.35);
+}
+
+.mirror-prompt {
+  margin: 0.5rem 0 0.95rem;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--espresso) 76%, var(--olive) 24%);
+}
+
+.mirror-glass {
+  position: relative;
+  width: min(360px, 92%);
+  height: min(470px, 68vh);
+  margin: 0.15rem auto 0;
+  border-radius: 50% / 40%;
+  background: linear-gradient(145deg, #ccc, #eee);
+  border: 2px solid rgba(34, 28, 40, 0.28);
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 0.4),
+    inset 0 0 50px rgba(255, 255, 255, 0.6),
+    inset 0 0 100px rgba(200, 200, 255, 0.3);
+  padding: 1.35rem 1rem 1.1rem;
+  overflow: hidden;
+  animation: mirror-glow 3s infinite alternate;
+}
+
+.mirror-glass::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  transform: rotate(25deg);
+  animation: mirror-shine 5s infinite linear;
+  pointer-events: none;
+}
+
+.mirror-glass::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 999px;
+  border: 2px solid rgba(109, 91, 166, 0.24);
+  transform: scale(0.65);
+  opacity: 0;
+  animation: medusa-ripple 900ms ease-out;
+  pointer-events: none;
+}
+
+.reflection-grid {
+  margin: 0;
+  padding: 0;
+  width: min(420px, 100%);
+  margin-inline: auto;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.2rem;
+  justify-items: center;
+}
+
+.reflection-pill {
+  width: 100%;
+  text-align: center;
+  border: 0;
+  border-radius: 0;
+  padding: 0.35rem 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--espresso) 88%, var(--olive) 12%);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.7rem;
+  gap: 0;
+  cursor: pointer;
+  transition: color 140ms ease, transform 140ms ease;
 }
 
-.medusa-subgenres-header h2 {
-  margin-bottom: 0;
+.reflection-pill.active {
+  color: color-mix(in srgb, var(--pink) 74%, var(--espresso) 26%);
+  text-decoration: underline;
+  text-underline-offset: 0.22rem;
 }
 
-.subgenres-toggle {
-  border: 1px solid color-mix(in srgb, var(--pink) 60%, var(--olive) 40%);
-  border-radius: 8px;
-  width: 1.7rem;
-  height: 1.7rem;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  font: inherit;
-  font-size: 0.95rem;
+.reflection-pill:hover {
+  color: color-mix(in srgb, var(--pink) 64%, var(--espresso) 36%);
+  transform: translateY(-1px);
+}
+
+.reflection-pill:focus-visible,
+.collection-pill:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--pink) 72%, var(--acid) 28%);
+  outline-offset: 2px;
+}
+
+.reflection-pill-line {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+}
+
+.collection-chooser {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.46rem;
+}
+
+.collection-block {
+  margin-top: 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--pink) 36%, var(--olive) 64%);
+  border-radius: 14px;
+  background: rgba(250, 246, 239, 0.56);
+  padding: 0.7rem 0.8rem 0.82rem;
+}
+
+.collection-label {
+  margin: 0;
+  font-size: 0.79rem;
   font-weight: 700;
-  color: var(--cream);
-  background: color-mix(in srgb, var(--pink) 82%, var(--espresso) 18%);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--espresso) 70%, var(--olive) 30%);
+}
+
+.collection-pill {
+  border: 1px solid color-mix(in srgb, var(--pink) 46%, var(--olive) 54%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cream) 90%, var(--pink) 10%);
+  color: color-mix(in srgb, var(--espresso) 86%, var(--olive) 14%);
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.subgenres-toggle:hover {
-  background: color-mix(in srgb, var(--pink) 68%, var(--acid) 32%);
+.collection-pill.active {
+  background: color-mix(in srgb, var(--pink) 48%, var(--cream) 52%);
+  border-color: color-mix(in srgb, var(--pink) 66%, var(--olive) 34%);
   color: var(--espresso);
 }
 
-.medusa-card ul,
-.medusa-card ol {
-  margin: 0;
-  padding-left: 1.15rem;
-  color: color-mix(in srgb, var(--espresso) 82%, var(--olive) 18%);
+.collection-panel {
+  margin-top: 1rem;
+  border: 1px solid color-mix(in srgb, var(--pink) 34%, var(--olive) 66%);
+  border-radius: 16px;
+  background: rgba(250, 246, 239, 0.78);
+  padding: 0.82rem 0.98rem 0.9rem;
 }
 
-.medusa-subgenres-grid {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-rows: minmax(40px, auto);
-  grid-auto-flow: dense;
-  gap: 0.32rem;
-}
-
-.medusa-subgenres-grid li {
-  grid-column: span 3;
-}
-
-.medusa-subgenres-grid li:nth-child(5n + 1),
-.medusa-subgenres-grid li:nth-child(5n + 4) {
-  grid-column: span 4;
-}
-
-.medusa-subgenres-grid li:nth-child(7n + 3) {
-  grid-column: span 5;
-}
-
-.medusa-subgenres-grid li:nth-last-child(2),
-.medusa-subgenres-grid li:last-child {
-  grid-column: span 6;
-}
-
-.subgenre-box {
-  width: 100%;
-  height: 100%;
-  text-align: left;
-  border: 1px solid color-mix(in srgb, var(--pink) 58%, var(--olive) 42%);
-  border-radius: 12px;
-  padding: 0.32rem 0.4rem;
-  display: flex;
-  align-items: center;
-  line-height: 1.3;
+.recommendations-toggle {
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--espresso) 80%, var(--olive) 20%);
   font: inherit;
+  font-size: 0.82rem;
   font-weight: 700;
-  text-wrap: balance;
-  color: color-mix(in srgb, var(--espresso) 88%, var(--olive) 12%);
-  background: color-mix(in srgb, var(--pink) 64%, var(--cream) 36%);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0;
   cursor: pointer;
 }
 
-.subgenre-box:hover {
-  background: color-mix(in srgb, var(--pink) 66%, var(--acid) 34%);
+.recommendations-arrow {
+  font-size: 1.22rem;
+  line-height: 1;
 }
 
-.medusa-subgenres h3 {
-  margin: 0 0 0.3rem;
+.collection-panel h3 {
+  margin: 0.15rem 0 0.5rem;
   font-size: 1rem;
   color: var(--espresso);
 }
 
-.medusa-instruction {
-  margin: 0 0 0.7rem;
-  color: color-mix(in srgb, var(--espresso) 84%, var(--olive) 16%);
-  font-weight: 600;
-}
-
-.close-popup {
-  width: fit-content;
-  border: 0;
-  border-radius: 10px;
-  padding: 0.5rem 0.8rem;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.close-popup {
-  background: var(--pink);
-  color: var(--cream);
-}
-
-.popup-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  background: rgba(59, 42, 36, 0.48);
-}
-
-.popup-card {
-  width: min(560px, 96vw);
-  background: color-mix(in srgb, var(--cream) 90%, var(--pink) 10%);
-  border: 1px solid color-mix(in srgb, var(--pink) 58%, var(--olive) 42%);
-  border-radius: 16px;
-  padding: 1rem 1.1rem;
-  box-shadow: 0 16px 40px rgba(59, 42, 36, 0.24);
-}
-
-.popup-card h3 {
-  margin: 0 0 0.65rem;
-  font-size: 1.05rem;
-}
-
-.popup-focus {
-  margin: 0 0 0.8rem;
-  font-size: 0.95rem;
-  color: color-mix(in srgb, var(--espresso) 80%, var(--olive) 20%);
-}
-
-.popup-card ul {
-  margin: 0 0 0.9rem;
+.collection-panel ul {
+  margin: 0;
   padding-left: 1.1rem;
   color: color-mix(in srgb, var(--espresso) 82%, var(--olive) 18%);
 }
 
-.popup-card li + li {
-  margin-top: 0.28rem;
+.collection-panel li + li {
+  margin-top: 0.3rem;
 }
 
-.popup-card li a {
+.collection-panel li a {
   color: color-mix(in srgb, var(--pink) 78%, var(--espresso) 22%);
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--pink) 62%, var(--olive) 38%);
 }
 
-.popup-card li a:hover {
+.collection-panel li a:hover {
   color: var(--espresso);
   border-bottom-color: color-mix(in srgb, var(--acid) 60%, var(--pink) 40%);
 }
 
-.medusa-card a {
+.medusa-consult a {
   color: var(--pink);
   font-weight: 700;
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--pink) 62%, var(--olive) 38%);
 }
 
-.medusa-card a:hover {
+.medusa-consult a:hover {
   color: var(--espresso);
   border-bottom-color: color-mix(in srgb, var(--acid) 60%, var(--pink) 40%);
+}
+
+@keyframes medusa-ripple {
+  0% {
+    transform: scale(0.22);
+    opacity: 0.75;
+  }
+
+  100% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes mirror-glow {
+  0% {
+    box-shadow:
+      0 0 30px rgba(255, 255, 255, 0.4),
+      inset 0 0 50px rgba(255, 255, 255, 0.6),
+      inset 0 0 100px rgba(200, 200, 255, 0.3);
+  }
+
+  100% {
+    box-shadow:
+      0 0 60px rgba(173, 216, 230, 0.8),
+      inset 0 0 80px rgba(255, 255, 255, 0.9),
+      inset 0 0 100px rgba(200, 200, 255, 0.4);
+  }
+}
+
+@keyframes mirror-shine {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
 }
 
 @media (max-width: 640px) {
@@ -319,32 +408,26 @@
     top: -0.2rem;
   }
 
-  .medusa-card {
-    border-radius: 20px;
-    padding: 1rem;
-  }
-
-  .medusa-subgenres-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .medusa-subgenres-grid li {
-    grid-column: span 3;
-    grid-row: span 1;
-  }
-
-  .medusa-subgenres-grid li:nth-child(odd) {
-    grid-column: span 4;
-  }
-
-  .medusa-subgenres-grid {
+  .reflection-grid {
     grid-template-columns: 1fr;
   }
 
-  .medusa-subgenres-grid li,
-  .medusa-subgenres-grid li:nth-child(odd) {
-    grid-column: span 1;
-    grid-row: span 1;
+  .mirror-stage {
+    width: 100%;
+    min-height: 72vh;
+    padding: 0.95rem 0.7rem 1.1rem;
+  }
+
+  .mirror-glass {
+    width: min(330px, 96%);
+    height: min(440px, 66vh);
+    padding: 1.15rem 0.8rem 0.95rem;
+  }
+
+  .collection-block,
+  .collection-panel {
+    padding-left: 0.72rem;
+    padding-right: 0.72rem;
   }
 
   .medusa-subtitle {

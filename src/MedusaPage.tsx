@@ -17,25 +17,16 @@ type ReflectionPrompt = {
   id: string;
   icon: string;
   line: string;
+  keywords: string[];
   collections: ReflectionCollection[];
 };
-
-const MIRROR_FACETS = [
-  "Beauty",
-  "Identity",
-  "Desire",
-  "Rage",
-  "Obsession",
-  "Transformation",
-  "Performance",
-  "Isolation",
-];
 
 const REFLECTION_PROMPTS: ReflectionPrompt[] = [
   {
     id: "identity",
     icon: "🪞",
     line: "I don't recognize myself anymore.",
+    keywords: ["identity", "myself", "recognize", "becoming", "double", "doppelganger"],
     collections: [
       {
         label: "Identity Crisis",
@@ -55,6 +46,7 @@ const REFLECTION_PROMPTS: ReflectionPrompt[] = [
     id: "beauty",
     icon: "💄",
     line: "Beauty feels like a performance.",
+    keywords: ["beauty", "body", "femininity", "performance", "pretty", "appearance"],
     collections: [
       {
         label: "Beauty Horror",
@@ -74,6 +66,7 @@ const REFLECTION_PROMPTS: ReflectionPrompt[] = [
     id: "rage",
     icon: "🩸",
     line: "I'm angry in ways I can't explain.",
+    keywords: ["angry", "rage", "furious", "femgore", "revenge", "violence"],
     collections: [
       {
         label: "Female Rage",
@@ -89,6 +82,7 @@ const REFLECTION_PROMPTS: ReflectionPrompt[] = [
     id: "gaze",
     icon: "👁",
     line: "I feel like everyone is watching me.",
+    keywords: ["watching", "gaze", "society", "seen", "judge", "performance", "satire"],
     collections: [
       {
         label: "Society's Gaze",
@@ -108,6 +102,7 @@ const REFLECTION_PROMPTS: ReflectionPrompt[] = [
     id: "weird",
     icon: "🐇",
     line: "Reality feels slightly... off.",
+    keywords: ["surreal", "off", "dream", "weird", "unreal", "strange", "logic"],
     collections: [
       {
         label: "Surreal",
@@ -228,29 +223,43 @@ function getCollectionRecommendations(collection: ReflectionCollection) {
     }
   });
 
-  return getUniqueRecommendations(gathered);
+  return getUniqueRecommendations(gathered).slice(0, 12);
 }
 
 function MedusaPage() {
-  const [activeReflectionId, setActiveReflectionId] = useState(REFLECTION_PROMPTS[0].id);
-  const [activeCollectionLabel, setActiveCollectionLabel] = useState(
-    REFLECTION_PROMPTS[0].collections[0].label,
-  );
+  const [activeReflectionId, setActiveReflectionId] = useState<string | null>(null);
+  const [activeCollectionLabel, setActiveCollectionLabel] = useState<string | null>(null);
+  const [isRecommendationsOpen, setIsRecommendationsOpen] = useState(true);
 
-  const activeReflection = useMemo(
-    () => REFLECTION_PROMPTS.find((item) => item.id === activeReflectionId) ?? REFLECTION_PROMPTS[0],
-    [activeReflectionId],
-  );
+  const activeReflection = useMemo(() => {
+    if (!activeReflectionId) {
+      return null;
+    }
+
+    return (
+      REFLECTION_PROMPTS.find((prompt) => prompt.id === activeReflectionId) ??
+      REFLECTION_PROMPTS[0]
+    );
+  }, [activeReflectionId]);
 
   useEffect(() => {
-    setActiveCollectionLabel(activeReflection.collections[0].label);
+    if (activeReflection) {
+      setActiveCollectionLabel(activeReflection.collections[0].label);
+    }
   }, [activeReflection]);
 
-  const activeCollection =
-    activeReflection.collections.find((collection) => collection.label === activeCollectionLabel) ??
-    activeReflection.collections[0];
+  useEffect(() => {
+    setIsRecommendationsOpen(true);
+  }, [activeCollectionLabel]);
 
-  const activeBooks = getCollectionRecommendations(activeCollection);
+  const activeCollection = activeReflection
+    ? activeReflection.collections.find((collection) => collection.label === activeCollectionLabel) ??
+      activeReflection.collections[0]
+    : null;
+
+  const activeBooks = activeCollection
+    ? getCollectionRecommendations(activeCollection)
+    : [];
 
   return (
     <div className="medusa-page">
@@ -260,79 +269,86 @@ function MedusaPage() {
             <span aria-hidden="true">←</span>
             <span>Back</span>
           </Link>
-          <p className="medusa-eyebrow">Sister Site</p>
-          <h1>Medusa</h1>
-          <p className="medusa-subtitle">
-            Face the gaze and let Medusa name what is shifting inside you. Choose a reflection,
-            then step into the collection it summons.
-          </p>
+          <p className="medusa-eyebrow">Medusa</p>
+          <h1>Face Medusa's mirror. Choose your reflection, and she will name your next dark read.</h1>
+          <p className="medusa-subtitle">A curated weird girl and dark feminine collection about beauty, identity, obsession, and becoming monstrous under society's gaze.</p>
         </header>
 
-        <section className="medusa-card" aria-label="Face the gaze">
-          <h2>Face the Gaze</h2>
-          <p className="medusa-instruction">Consult Medusa through reflections, not genres.</p>
-
-          <div className="mirror-stage" key={activeReflection.id}>
-            <p className="mirror-line">
-              <span className="mirror-icon" aria-hidden="true">{activeReflection.icon}</span>
-              <span>{activeReflection.line}</span>
-            </p>
+        <section className="medusa-consult" aria-label="Face the gaze">
+          <div className="mirror-stage" key={activeReflectionId ?? "mirror-default"}>
+            <p className="mirror-invocation">Mirror, mirror on the wall...</p>
+            <div className="mirror-glass">
+              <p className="mirror-prompt">Click below to reflect</p>
+              <ul className="reflection-grid" aria-label="Reflections">
+                {REFLECTION_PROMPTS.map((prompt) => (
+                  <li key={prompt.id}>
+                    <button
+                      type="button"
+                      className={`reflection-pill ${activeReflectionId === prompt.id ? "active" : ""}`}
+                      onClick={() => setActiveReflectionId(prompt.id)}
+                    >
+                      <p className="reflection-pill-line">
+                        <span>{prompt.line}</span>
+                      </p>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          <h3 className="medusa-section-title">Reflections</h3>
-          <ul className="reflection-grid" aria-label="Reflection prompts">
-            {REFLECTION_PROMPTS.map((reflection) => (
-              <li key={reflection.id}>
+          {activeReflection && activeCollection && (
+            <>
+              <div className="collection-block">
+                <p className="collection-label">Subgenres</p>
+                <div className="collection-chooser" aria-label="Subgenres">
+                  {activeReflection.collections.map((collection) => (
+                    <button
+                      key={collection.label}
+                      type="button"
+                      className={`collection-pill ${activeCollection.label === collection.label ? "active" : ""}`}
+                      onClick={() => setActiveCollectionLabel(collection.label)}
+                    >
+                      {collection.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <section className="collection-panel" aria-label={`${activeCollection.label} books`}>
                 <button
                   type="button"
-                  className={`reflection-pill ${activeReflection.id === reflection.id ? "active" : ""}`}
-                  onClick={() => setActiveReflectionId(reflection.id)}
+                  className="recommendations-toggle"
+                  aria-expanded={isRecommendationsOpen}
+                  onClick={() => setIsRecommendationsOpen((prev) => !prev)}
                 >
-                  <span aria-hidden="true">{reflection.icon}</span>
-                  <span>{reflection.line}</span>
+                  <span>Recommendations</span>
+                  <span className="recommendations-arrow" aria-hidden="true">
+                    {isRecommendationsOpen ? "▾" : "▸"}
+                  </span>
                 </button>
-              </li>
-            ))}
-          </ul>
 
-          <div className="mirror-facets" aria-label="The Mirror facets">
-            <h3 className="medusa-section-title">The Mirror</h3>
-            <ul>
-              {MIRROR_FACETS.map((facet) => (
-                <li key={facet}>{facet}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="collection-chooser" aria-label="Book collections">
-            {activeReflection.collections.map((collection) => (
-              <button
-                key={collection.label}
-                type="button"
-                className={`collection-pill ${activeCollection.label === collection.label ? "active" : ""}`}
-                onClick={() => setActiveCollectionLabel(collection.label)}
-              >
-                {collection.label}
-              </button>
-            ))}
-          </div>
-
-          <section className="collection-panel" aria-label={`${activeCollection.label} books`}>
-            <h3>{activeCollection.label}</h3>
-            <ul>
-              {activeBooks.map((book) => (
-                <li key={book}>
-                  <a
-                    href={getGoodreadsSearchUrl(book)}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {book}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+                {isRecommendationsOpen && (
+                  <>
+                    <h3>{activeCollection.label}</h3>
+                    <ul>
+                      {activeBooks.map((book) => (
+                        <li key={book}>
+                          <a
+                            href={getGoodreadsSearchUrl(book)}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {book}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </section>
+            </>
+          )}
         </section>
 
       </main>

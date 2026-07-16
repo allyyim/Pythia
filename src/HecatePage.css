@@ -1,0 +1,95 @@
+:root {
+  --hecate-ivory: #F4F1EB;
+  --hecate-charcoal: #202124;
+  --hecate-indigo: #232946;
+  --hecate-amethyst: #6D5BA6;
+  --hecate-silver: #C5C8D3;
+}
+
+.hecate-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(109, 91, 166, 0.22), transparent 44%),
+    radial-gradient(circle at 86% 80%, rgba(35, 41, 70, 0.16), transparent 42%),
+    radial-gradient(circle at 78% 22%, rgba(197, 200, 211, 0.28), transparent 40%),
+    linear-gradient(180deg, #f4f1eb 0%, #f0ece4 100%);
+}
+
+.hecate-shell {
+  width: min(980px, 92vw);
+  margin: 0 auto;
+  padding: 4rem 0 5rem;
+  color: var(--hecate-charcoal);
+}
+
+.hecate-hero {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.hecate-top-back-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--hecate-silver) 55%, var(--hecate-amethyst) 45%);
+  background: color-mix(in srgb, var(--hecate-ivory) 84%, var(--hecate-silver) 16%);
+  color: var(--hecate-indigo);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 0 0.65rem;
+}
+
+.hecate-top-back-link:hover {
+  background: color-mix(in srgb, var(--hecate-ivory) 70%, var(--hecate-amethyst) 30%);
+  color: var(--hecate-charcoal);
+}
+
+.hecate-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.85rem;
+  background: var(--hecate-amethyst);
+  color: var(--hecate-ivory);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.hecate-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 0.97;
+}
+
+.hecate-subtitle {
+  margin-top: 1rem;
+  max-width: 62ch;
+  color: color-mix(in srgb, var(--hecate-charcoal) 82%, var(--hecate-indigo) 18%);
+  font-size: 1.05rem;
+}
+
+.hecate-card {
+  background: color-mix(in srgb, var(--hecate-ivory) 90%, var(--hecate-silver) 10%);
+  border: 1px solid color-mix(in srgb, var(--hecate-silver) 55%, var(--hecate-indigo) 45%);
+  border-radius: 28px;
+  padding: 1.25rem 1.3rem;
+  box-shadow: 0 16px 36px rgba(35, 41, 70, 0.14);
+}
+
+.hecate-card h2 {
+  margin: 0 0 0.55rem;
+  color: var(--hecate-indigo);
+}
+
+.hecate-card p {
+  margin: 0;
+  color: color-mix(in srgb, var(--hecate-charcoal) 86%, var(--hecate-indigo) 14%);
+}

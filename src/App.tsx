@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 type InputMode = "title" | "genre";
@@ -363,12 +364,28 @@ function App() {
     <main className="app-shell">
       <header className="hero">
         <p className="eyebrow">Pythia</p>
-        <h1>Tell me a title, genre, or a vibe. I will hand you 5 reads.</h1>
+        <h1>Speak, seeker. Tell Pythia a title, a genre, or a vibe, and she will reveal five destined reads.</h1>
         <p className="subtitle">
-          A free, oracle-powered recommendation engine: instant curated matches,
-          Open Library discovery, and lightweight semantic scoring. Named after
-          Pythia, the Oracle of Delphi, it "prophesies" your next obsession.
+          An oracle-powered recommendation engine with instant curated matches. Named after
+          Pythia, the Oracle of Delphi, it "prophesies" your next reading obsession.
         </p>
+        <section className="sister-site" aria-label="Sister site: Medusa">
+          <p className="sister-lead">
+            Pythia is your general/main recommender. 
+          </p>
+          <ul>
+            <li>For women who choose the bear, visit:
+              <Link to="/medusa" className="sister-link">
+                Medusa
+              </Link>
+            </li>
+            <li>For those who aren't afraid of the dark, visit:
+              <Link to="/hecate" className="sister-link">
+                Hecate
+              </Link>
+            </li>
+          </ul>
+        </section>
       </header>
 
       <form className="prompt-card" onSubmit={onSubmit}>

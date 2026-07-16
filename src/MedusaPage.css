@@ -1,0 +1,353 @@
+:root {
+  --cream: #FAF6EF;
+  --espresso: #3B2A24;
+  --olive: #747A52;
+  --pink: #FF3EA5;
+  --acid: #E8FF3F;
+}
+
+.medusa-shell {
+  width: min(980px, 92vw);
+  margin: 0 auto;
+  padding: 4rem 0 5rem;
+  position: relative;
+  color: var(--espresso);
+}
+
+.medusa-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255, 62, 165, 0.3), transparent 42%),
+    radial-gradient(circle at 84% 80%, rgba(116, 122, 82, 0.25), transparent 44%),
+    linear-gradient(180deg, #faf6ef 0%, #f8efe2 100%);
+}
+
+.medusa-shell::before,
+.medusa-shell::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  z-index: -1;
+  filter: blur(14px);
+}
+
+.medusa-shell::before {
+  width: 240px;
+  height: 240px;
+  top: -34px;
+  left: -64px;
+  background: radial-gradient(
+    circle at 34% 34%,
+    rgba(255, 62, 165, 0.56),
+    rgba(232, 255, 63, 0.2) 72%
+  );
+}
+
+.medusa-shell::after {
+  width: 220px;
+  height: 220px;
+  right: -54px;
+  bottom: 44px;
+  background: radial-gradient(
+    circle at 62% 38%,
+    rgba(255, 62, 165, 0.3),
+    rgba(116, 122, 82, 0.14) 72%
+  );
+}
+
+.medusa-hero {
+  text-align: left;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.medusa-top-back-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--pink) 64%, var(--olive) 36%);
+  background: color-mix(in srgb, var(--cream) 84%, var(--pink) 16%);
+  color: var(--espresso);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 0 0.65rem;
+}
+
+.medusa-top-back-link:hover {
+  background: color-mix(in srgb, var(--pink) 28%, var(--cream) 72%);
+}
+
+.medusa-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.85rem;
+  background: var(--pink);
+  color: var(--cream);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+}
+
+.medusa-hero h1,
+.medusa-card h2 {
+  color: var(--espresso);
+}
+
+.medusa-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 0.97;
+  max-width: 18ch;
+}
+
+.medusa-subtitle {
+  margin-top: 1rem;
+  max-width: 62ch;
+  color: color-mix(in srgb, var(--espresso) 78%, var(--olive) 22%);
+  font-size: 1.05rem;
+}
+
+.medusa-card {
+  background: color-mix(in srgb, var(--cream) 90%, var(--pink) 10%);
+  border: 1px solid color-mix(in srgb, var(--pink) 58%, var(--olive) 42%);
+  border-radius: 28px;
+  padding: 1.25rem 1.3rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 16px 36px rgba(255, 62, 165, 0.2);
+}
+
+.medusa-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+  font-size: 1.25rem;
+}
+
+.medusa-subgenres-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.medusa-subgenres-header h2 {
+  margin-bottom: 0;
+}
+
+.subgenres-toggle {
+  border: 1px solid color-mix(in srgb, var(--pink) 60%, var(--olive) 40%);
+  border-radius: 8px;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cream);
+  background: color-mix(in srgb, var(--pink) 82%, var(--espresso) 18%);
+  cursor: pointer;
+}
+
+.subgenres-toggle:hover {
+  background: color-mix(in srgb, var(--pink) 68%, var(--acid) 32%);
+  color: var(--espresso);
+}
+
+.medusa-card ul,
+.medusa-card ol {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: color-mix(in srgb, var(--espresso) 82%, var(--olive) 18%);
+}
+
+.medusa-subgenres-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: minmax(40px, auto);
+  grid-auto-flow: dense;
+  gap: 0.32rem;
+}
+
+.medusa-subgenres-grid li {
+  grid-column: span 3;
+}
+
+.medusa-subgenres-grid li:nth-child(5n + 1),
+.medusa-subgenres-grid li:nth-child(5n + 4) {
+  grid-column: span 4;
+}
+
+.medusa-subgenres-grid li:nth-child(7n + 3) {
+  grid-column: span 5;
+}
+
+.medusa-subgenres-grid li:nth-last-child(2),
+.medusa-subgenres-grid li:last-child {
+  grid-column: span 6;
+}
+
+.subgenre-box {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  border: 1px solid color-mix(in srgb, var(--pink) 58%, var(--olive) 42%);
+  border-radius: 12px;
+  padding: 0.32rem 0.4rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.3;
+  font: inherit;
+  font-weight: 700;
+  text-wrap: balance;
+  color: color-mix(in srgb, var(--espresso) 88%, var(--olive) 12%);
+  background: color-mix(in srgb, var(--pink) 64%, var(--cream) 36%);
+  cursor: pointer;
+}
+
+.subgenre-box:hover {
+  background: color-mix(in srgb, var(--pink) 66%, var(--acid) 34%);
+}
+
+.medusa-subgenres h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+  color: var(--espresso);
+}
+
+.medusa-instruction {
+  margin: 0 0 0.7rem;
+  color: color-mix(in srgb, var(--espresso) 84%, var(--olive) 16%);
+  font-weight: 600;
+}
+
+.close-popup {
+  width: fit-content;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.close-popup {
+  background: var(--pink);
+  color: var(--cream);
+}
+
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(59, 42, 36, 0.48);
+}
+
+.popup-card {
+  width: min(560px, 96vw);
+  background: color-mix(in srgb, var(--cream) 90%, var(--pink) 10%);
+  border: 1px solid color-mix(in srgb, var(--pink) 58%, var(--olive) 42%);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 16px 40px rgba(59, 42, 36, 0.24);
+}
+
+.popup-card h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+}
+
+.popup-focus {
+  margin: 0 0 0.8rem;
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--espresso) 80%, var(--olive) 20%);
+}
+
+.popup-card ul {
+  margin: 0 0 0.9rem;
+  padding-left: 1.1rem;
+  color: color-mix(in srgb, var(--espresso) 82%, var(--olive) 18%);
+}
+
+.popup-card li + li {
+  margin-top: 0.28rem;
+}
+
+.popup-card li a {
+  color: color-mix(in srgb, var(--pink) 78%, var(--espresso) 22%);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--pink) 62%, var(--olive) 38%);
+}
+
+.popup-card li a:hover {
+  color: var(--espresso);
+  border-bottom-color: color-mix(in srgb, var(--acid) 60%, var(--pink) 40%);
+}
+
+.medusa-card a {
+  color: var(--pink);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--pink) 62%, var(--olive) 38%);
+}
+
+.medusa-card a:hover {
+  color: var(--espresso);
+  border-bottom-color: color-mix(in srgb, var(--acid) 60%, var(--pink) 40%);
+}
+
+@media (max-width: 640px) {
+  .medusa-shell {
+    width: min(100%, 95vw);
+    padding-top: 2.2rem;
+  }
+
+  .medusa-top-back-link {
+    top: -0.2rem;
+  }
+
+  .medusa-card {
+    border-radius: 20px;
+    padding: 1rem;
+  }
+
+  .medusa-subgenres-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .medusa-subgenres-grid li {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+
+  .medusa-subgenres-grid li:nth-child(odd) {
+    grid-column: span 4;
+  }
+
+  .medusa-subgenres-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .medusa-subgenres-grid li,
+  .medusa-subgenres-grid li:nth-child(odd) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .medusa-subtitle {
+    font-size: 1rem;
+  }
+}

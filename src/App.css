@@ -61,6 +61,55 @@
   font-size: 1.05rem;
 }
 
+.sister-site {
+  margin-top: 1.15rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #bfd9e6;
+  background: rgba(255, 255, 255, 0.68);
+  max-width: 66ch;
+}
+
+.sister-site h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.1rem;
+}
+
+.sister-lead {
+  margin: 0 0 0.55rem;
+  color: #304957;
+}
+
+.sister-link {
+  margin-left: 0.4rem;
+  color: #0c4d73;
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(12, 77, 115, 0.5);
+}
+
+.sister-link:hover {
+  color: #082f45;
+}
+
+.sister-site ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #2f4a58;
+}
+
+.sister-site li + li {
+  margin-top: 0.15rem;
+}
+
+.tagline {
+  margin-top: 0.55rem;
+  margin-bottom: 0;
+  font-style: italic;
+  color: #173545;
+  font-weight: 600;
+}
+
 .prompt-card {
   background: color-mix(in srgb, #ffffff 80%, #c2f0ff 20%);
   border: 1px solid #bdd7e5;
@@ -455,6 +504,14 @@ textarea:focus,
 
   .prompt-card {
     padding: 1rem;
+  }
+
+  .sister-site {
+    padding: 0.8rem;
+  }
+
+  .sister-site h3 {
+    font-size: 1rem;
   }
 
   .bubble {

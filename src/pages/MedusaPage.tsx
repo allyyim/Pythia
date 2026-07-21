@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "./MedusaPage.css";
+import "../styles/pages/MedusaPage.css";
 import {
   getMedusaBookBlurb,
   MEDUSA_AUTHOR_BY_TITLE,
@@ -8,7 +8,7 @@ import {
   REFLECTION_PROMPTS,
   type MedusaSubgenre,
   type ReflectionCollection,
-} from "./medusaSubgenresSeed";
+} from "../seeds/medusaSubgenresSeed";
 
 type ParsedRecommendation = {
   title: string;
@@ -128,10 +128,10 @@ function MedusaPage() {
             <span>Back</span>
           </Link>
           <p className="medusa-eyebrow">Medusa</p>
-          <h1>Face Medusa's mirror. Choose your reflection, and she will name your next dark read.</h1>
+          <h1>Face Medusa's mirror. She'll name your next cursed obsession.</h1>
           <p className="medusa-subtitle">
-            The magic of Medusa lives in unhinged weird-girl chaos: beauty rot, identity glitches,
-            obsession spirals, and the delicious moment a girl stops performing and becomes the monster.
+            Medusa thrives on unhinged weird-girl chaos: tarnished glamour, mirror-split selves,
+            and the delicious moment a girl stops performing and becomes the monster.
           </p>
         </header>
 

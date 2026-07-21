@@ -33,69 +33,69 @@ export const WORLD_OPTIONS: AxisOption<WorldType>[] = [
   {
     id: "controlled",
     label: "Controlled Societies",
-    subtitle: "Dystopian governments, surveillance, authoritarian worlds",
+    subtitle: "Surveillance states and enforced order",
   },
   {
     id: "engineered",
     label: "Engineered Humanity",
-    subtitle: "Cloning, genetics, reproduction, human experimentation",
+    subtitle: "Genetics, reproduction, and design",
   },
   {
     id: "artificial",
     label: "Artificial Futures",
-    subtitle: "AI, technology, automation, machine consciousness",
+    subtitle: "AI, automation, and machine minds",
   },
   {
     id: "vanishing",
     label: "Vanishing Worlds",
-    subtitle: "Environmental collapse, isolation, disappearing societies",
+    subtitle: "Collapse, isolation, and disappearance",
   },
   {
     id: "altered",
     label: "Altered Reality",
-    subtitle: "Memory, perception, truth manipulation",
+    subtitle: "Memory, perception, and false truth",
   },
   {
     id: "beyondEarth",
     label: "Beyond Earth",
-    subtitle: "Space, alien civilizations, cosmic futures",
+    subtitle: "Cosmic frontiers and alien contact",
   },
   {
     id: "timelines",
     label: "Possible Timelines",
-    subtitle: "Alternate histories, parallel worlds, future branches",
+    subtitle: "Parallel histories and branching futures",
   },
 ];
 
 export const HUMAN_OPTIONS: AxisOption<HumanQuestion>[] = [
   {
     id: "truth",
-    label: "Who controls the truth?",
+    label: "Truth & Control",
     subtitle: "Propaganda, censorship, memory",
   },
   {
     id: "human",
-    label: "What makes us human?",
+    label: "Human Identity",
     subtitle: "Consciousness, cloning, identity",
   },
   {
     id: "choice",
-    label: "Who controls our choices?",
+    label: "Choice & Power",
     subtitle: "Relationships, reproduction, social rules",
   },
   {
     id: "optimize",
-    label: "What happens when society optimizes people?",
+    label: "Optimized Society",
     subtitle: "Conformity, efficiency, hierarchy",
   },
   {
     id: "survive",
-    label: "Can humanity survive itself?",
+    label: "Survival Pressure",
     subtitle: "Extinction, climate, adaptation",
   },
   {
     id: "reality",
-    label: "What happens when reality changes?",
+    label: "Shifting Reality",
     subtitle: "Perception, identity, uncertainty",
   },
 ];

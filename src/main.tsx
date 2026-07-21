@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./index.css";
+import "./styles/index.css";
 import App from "./App.tsx";
-import MedusaPage from "./MedusaPage.tsx";
-import NyxPage from "./NyxPage.tsx";
-import AriadnePage from "./AriadnePage.tsx";
-import JanusPage from "./JanusPage.tsx";
+import MedusaPage from "./pages/MedusaPage.tsx";
+import NyxPage from "./pages/NyxPage.tsx";
+import AriadnePage from "./pages/AriadnePage.tsx";
+import JanusPage from "./pages/JanusPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

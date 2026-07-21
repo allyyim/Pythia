@@ -1,0 +1,608 @@
+:root {
+  --hecate-ivory: #f4ecff;
+  --hecate-charcoal: #221735;
+  --hecate-indigo: #321f56;
+  --hecate-amethyst: #9a6eff;
+  --hecate-silver: #cabaf3;
+  --hecate-garnet: #5b2a8f;
+  --hecate-lavender-glow: #bf9bff;
+}
+
+.nyx-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 11% 14%, rgba(91, 42, 143, 0.48), transparent 46%),
+    radial-gradient(circle at 86% 80%, rgba(191, 155, 255, 0.34), transparent 44%),
+    radial-gradient(circle at 68% 22%, rgba(50, 31, 86, 0.28), transparent 40%),
+    linear-gradient(180deg, #e9defa 0%, #ddcff8 55%, #d3c3f4 100%);
+}
+
+.nyx-shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 4rem clamp(1rem, 2.8vw, 1.55rem) 5rem;
+  box-sizing: border-box;
+  color: var(--hecate-charcoal);
+}
+
+.nyx-hero {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.nyx-top-back-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--hecate-silver) 38%, var(--hecate-garnet) 62%);
+  background: color-mix(in srgb, var(--hecate-ivory) 72%, var(--hecate-garnet) 28%);
+  color: #fff7fd;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 0 0.65rem;
+}
+
+.nyx-top-back-link:hover {
+  background: color-mix(in srgb, var(--hecate-garnet) 82%, var(--hecate-indigo) 18%);
+  color: #ffffff;
+}
+
+.nyx-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.85rem;
+  background: linear-gradient(135deg, var(--hecate-garnet), var(--hecate-amethyst));
+  color: var(--hecate-ivory);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.nyx-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 0.97;
+}
+
+.nyx-subtitle {
+  margin-top: 1rem;
+  max-width: 62ch;
+  color: color-mix(in srgb, var(--hecate-charcoal) 78%, var(--hecate-garnet) 22%);
+  font-size: 1.05rem;
+}
+
+.nyx-card {
+  background:
+    linear-gradient(160deg, rgba(245, 236, 255, 0.95), rgba(231, 216, 255, 0.97));
+  border: 1px solid color-mix(in srgb, var(--hecate-silver) 38%, var(--hecate-garnet) 62%);
+  border-radius: 28px;
+  padding: 1.25rem 1.3rem;
+  box-shadow: 0 16px 36px rgba(45, 18, 82, 0.28);
+}
+
+.nyx-card h2 {
+  margin: 0 0 0.55rem;
+  color: color-mix(in srgb, var(--hecate-garnet) 76%, var(--hecate-indigo) 24%);
+}
+
+.nyx-card p {
+  margin: 0;
+  color: color-mix(in srgb, var(--hecate-charcoal) 86%, var(--hecate-indigo) 14%);
+}
+
+.nyx-fear-invocation {
+  margin-top: 0.92rem;
+  text-align: center;
+  font-size: 1.08rem;
+  letter-spacing: 0.015em;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--hecate-garnet) 72%, var(--hecate-amethyst) 28%);
+}
+
+.nyx-fear-prompt {
+  margin-top: 0.55rem;
+  text-align: center;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--hecate-garnet) 68%, var(--hecate-indigo) 32%);
+}
+
+.nyx-path-grid {
+  margin-top: 0.55rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.nyx-path-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 0.34rem;
+  text-align: center;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--hecate-charcoal) 84%, var(--hecate-indigo) 16%);
+  font: inherit;
+  padding: 0.5rem 0.58rem;
+  cursor: pointer;
+  min-height: 5.1rem;
+}
+
+.nyx-path-chip > span:not(.nyx-path-icon) {
+  display: block;
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.nyx-path-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  font-size: 2.6rem;
+  line-height: 1;
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+}
+
+.nyx-path-chip.active .nyx-path-icon {
+  filter: drop-shadow(0 0 0.32rem rgba(112, 57, 176, 0.35));
+}
+
+.nyx-icon-ghost {
+  animation: nyxFloatGhost 2.8s ease-in-out infinite;
+}
+
+.nyx-icon-monster {
+  animation: nyxMonsterLurch 2.2s ease-in-out infinite;
+}
+
+.nyx-icon-woods {
+  animation: nyxForestSway 3.6s ease-in-out infinite;
+}
+
+.nyx-woods-cluster {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+}
+
+.nyx-woods-tree {
+  font-size: 1.12rem;
+  line-height: 1;
+  filter: saturate(1.45) brightness(0.72) hue-rotate(-18deg);
+}
+
+.nyx-woods-tree + .nyx-woods-tree {
+  margin-left: -0.12rem;
+}
+
+.nyx-woods-tree:nth-child(2) {
+  font-size: 1.56rem;
+  margin: 0;
+}
+
+.nyx-icon-unknown {
+  animation: nyxUnknownSpiral 1.9s linear infinite;
+}
+
+.nyx-icon-curses {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nyx-curses-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.nyx-curses-orb {
+  font-size: 1.8rem;
+  line-height: 1;
+  animation: nyxCurseOrbPulse 2.1s ease-in-out infinite;
+}
+
+.nyx-curses-spark {
+  position: absolute;
+  font-size: 0.54rem;
+  line-height: 1;
+  color: rgba(82, 52, 130, 0.95);
+  text-shadow:
+    0 0 0.28rem rgba(39, 20, 67, 0.72),
+    0 0 0.06rem rgba(25, 12, 43, 0.78);
+  pointer-events: none;
+  opacity: 0;
+  animation: nyxCurseOuterSpark 1.35s ease-out infinite;
+}
+
+.nyx-curses-spark-top {
+  top: -0.35rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nyx-curses-spark-right {
+  right: -0.38rem;
+  top: 50%;
+  transform: translateY(-50%);
+  animation-delay: 0.34s;
+}
+
+.nyx-curses-spark-bottom {
+  bottom: -0.35rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 0.67s;
+}
+
+.nyx-curses-spark-left {
+  left: -0.38rem;
+  top: 50%;
+  transform: translateY(-50%);
+  animation-delay: 1s;
+}
+
+.nyx-icon-haunted-house {
+  animation: nyxHouseCreak 3s ease-in-out infinite;
+}
+
+.nyx-icon-zombie {
+  animation: nyxZombiePopOut 2.05s cubic-bezier(0.35, 0.05, 0.25, 1) infinite;
+}
+
+.nyx-icon-mermaid {
+  position: relative;
+  animation: nyxMermaidWave 3.1s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0 0.28rem rgba(83, 154, 255, 0.42))
+    drop-shadow(0 0 0.1rem rgba(126, 234, 255, 0.4));
+}
+
+.nyx-icon-mermaid::before,
+.nyx-icon-mermaid::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.nyx-icon-mermaid::before {
+  inset: 0.25rem;
+  border: 2px solid rgba(90, 184, 255, 0.56);
+  animation: nyxWaterRipple 2.2s ease-in-out infinite;
+}
+
+.nyx-icon-mermaid::after {
+  inset: 0.45rem;
+  border: 1.8px solid rgba(124, 220, 255, 0.52);
+  animation: nyxWaterRipple 2.2s ease-in-out infinite 0.55s;
+}
+
+.nyx-icon-eyes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nyx-eye-pair {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+}
+
+.nyx-eye {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid color-mix(in srgb, var(--hecate-indigo) 72%, black 28%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nyx-pupil {
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--hecate-indigo) 70%, black 30%);
+  animation: nyxPupilScan 1.9s ease-in-out infinite;
+}
+
+.nyx-icon-abyss {
+  animation: nyxAbyssDrift 3.2s ease-in-out infinite;
+}
+
+.nyx-icon-default {
+  animation: nyxUnknownPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes nyxFloatGhost {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.24rem);
+  }
+}
+
+@keyframes nyxMonsterLurch {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  28% {
+    transform: translateX(-0.12rem) rotate(-5deg);
+  }
+  56% {
+    transform: translateX(0.14rem) rotate(4deg);
+  }
+}
+
+@keyframes nyxForestSway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes nyxUnknownSpiral {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(0.94);
+    filter: drop-shadow(0 0 0 rgba(80, 34, 120, 0.12));
+  }
+  50% {
+    transform: rotate(180deg) scale(1.12);
+    filter: drop-shadow(0 0 0.24rem rgba(80, 34, 120, 0.42));
+  }
+  100% {
+    transform: rotate(360deg) scale(0.94);
+    filter: drop-shadow(0 0 0 rgba(80, 34, 120, 0.12));
+  }
+}
+
+@keyframes nyxCurseOrbPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(236, 206, 255, 0));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 0.26rem rgba(236, 206, 255, 0.52));
+  }
+}
+
+@keyframes nyxCurseOuterSpark {
+  0% {
+    opacity: 0.1;
+    scale: 0.65;
+  }
+  45% {
+    opacity: 1;
+    scale: 1.12;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.86;
+  }
+}
+
+@keyframes nyxHouseCreak {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(-3deg);
+  }
+  66% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes nyxZombiePopOut {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 0 rgba(68, 132, 66, 0));
+  }
+  24% {
+    transform: translateY(-0.06rem) scale(1.08);
+  }
+  40% {
+    transform: translateY(-0.14rem) scale(1.34);
+    filter: drop-shadow(0 0 0.26rem rgba(68, 132, 66, 0.45));
+  }
+  58% {
+    transform: translateY(-0.05rem) scale(1.14);
+  }
+  74% {
+    transform: translateY(0) scale(1.03);
+  }
+}
+
+@keyframes nyxMermaidWave {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-0.12rem) rotate(3deg);
+  }
+}
+
+@keyframes nyxWaterRipple {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.72;
+  }
+}
+
+@keyframes nyxPupilScan {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25%,
+  35% {
+    transform: translateX(-0.14rem);
+  }
+  65%,
+  75% {
+    transform: translateX(0.14rem);
+  }
+}
+
+@keyframes nyxAbyssDrift {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(0.14rem) scale(1.06);
+  }
+}
+
+.nyx-path-chip.active {
+  color: color-mix(in srgb, var(--hecate-garnet) 78%, var(--hecate-indigo) 22%);
+  text-shadow: 0 0 0.4rem rgba(131, 78, 194, 0.28);
+}
+
+.nyx-seed-grid {
+  margin-top: 0.9rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.nyx-seed-block {
+  border: 1px solid color-mix(in srgb, var(--hecate-silver) 45%, var(--hecate-garnet) 55%);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--hecate-ivory) 86%, var(--hecate-lavender-glow) 14%);
+  padding: 0.72rem 0.78rem;
+}
+
+.nyx-seed-block h3 {
+  margin: 0 0 0.36rem;
+  font-size: 0.96rem;
+  color: color-mix(in srgb, var(--hecate-garnet) 72%, var(--hecate-indigo) 28%);
+}
+
+.nyx-leads-label {
+  margin: 0 0 0.2rem;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--hecate-garnet) 70%, var(--hecate-indigo) 30%);
+}
+
+.nyx-seed-block p {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.nyx-seed-authors {
+  margin-top: 0.42rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--hecate-garnet) 68%, var(--hecate-indigo) 32%);
+}
+
+.nyx-seed-block li + li {
+  margin-top: 0.2rem;
+}
+
+.nyx-seed-block a {
+  color: color-mix(in srgb, var(--hecate-garnet) 72%, var(--hecate-amethyst) 28%);
+  font-weight: 700;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.14em;
+}
+
+.nyx-seed-block a:hover,
+.nyx-seed-block a:focus-visible {
+  color: color-mix(in srgb, var(--hecate-garnet) 58%, var(--hecate-lavender-glow) 42%);
+}
+
+@media (max-width: 700px) {
+  .nyx-shell {
+    width: min(100%, 100vw);
+    padding: 2.2rem 1rem 2.8rem;
+  }
+
+  .nyx-hero {
+    margin-bottom: 1.25rem;
+    padding-top: 2.15rem;
+  }
+
+  .nyx-top-back-link {
+    top: 0;
+    height: 1.85rem;
+    font-size: 0.85rem;
+    padding: 0 0.56rem;
+  }
+
+  .nyx-hero h1 {
+    font-size: clamp(1.55rem, 8.6vw, 2.15rem);
+    line-height: 1.12;
+  }
+
+  .nyx-subtitle {
+    margin-top: 0.72rem;
+    font-size: 0.95rem;
+  }
+
+  .nyx-seed-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nyx-path-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .nyx-path-chip {
+    padding: 0.45rem 0.45rem;
+    min-height: 4.6rem;
+  }
+
+  .nyx-path-chip > span:not(.nyx-path-icon) {
+    font-size: 0.76rem;
+  }
+}

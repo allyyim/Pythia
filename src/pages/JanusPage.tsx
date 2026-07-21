@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "./JanusPage.css";
+import "../styles/pages/JanusPage.css";
 import {
   HUMAN_OPTIONS,
   JANUS_LIBRARY,
   WORLD_OPTIONS,
   type HumanQuestion,
   type WorldType,
-} from "./janusRecommendationsSeed";
+} from "../seeds/janusRecommendationsSeed";
 
 const toGoodreadsLink = (title: string, author: string) =>
   `https://www.goodreads.com/search?q=${encodeURIComponent(`${title} ${author}`)}`;
@@ -66,7 +66,7 @@ function JanusPage() {
             <span>Back</span>
           </Link>
           <p className="janus-eyebrow">Janus</p>
-          <h1>Face Janus's gate. Step into futures not yet lived, and he will name your next speculative read.</h1>
+          <h1>Face Janus's gate. He'll name your next speculative read.</h1>
           <p className="janus-subtitle">
             The magic of Janus is the threshold between future worlds and human consequences:
             imagined societies, emergent technology, and the fate that follows every choice.

@@ -1,0 +1,361 @@
+:root {
+  --ariadne-seafoam: #74d5c1;
+  --ariadne-gold: #c7a14a;
+  --ariadne-forest: #214a3a;
+  --ariadne-ivory: #f6f2e8;
+  --ariadne-ink: #1f2f2a;
+}
+
+.ariadne-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(116, 213, 193, 0.4), transparent 42%),
+    radial-gradient(circle at 84% 22%, rgba(199, 161, 74, 0.26), transparent 44%),
+    radial-gradient(circle at 72% 80%, rgba(33, 74, 58, 0.2), transparent 48%),
+    linear-gradient(155deg, #f7f3ea 0%, #f1ecdf 54%, #e9e3d5 100%);
+}
+
+.ariadne-shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 4rem clamp(1rem, 2.8vw, 1.55rem) 5rem;
+  box-sizing: border-box;
+  color: var(--ariadne-ink);
+}
+
+.ariadne-hero {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.ariadne-top-back-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ariadne-gold) 42%, var(--ariadne-seafoam) 58%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ariadne-seafoam) 72%, var(--ariadne-ivory) 28%),
+    color-mix(in srgb, var(--ariadne-seafoam) 48%, var(--ariadne-gold) 52%)
+  );
+  color: var(--ariadne-ink);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 0 0.68rem;
+}
+
+.ariadne-top-back-link:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ariadne-seafoam) 58%, var(--ariadne-gold) 42%),
+    color-mix(in srgb, var(--ariadne-seafoam) 42%, var(--ariadne-forest) 58%)
+  );
+}
+
+.ariadne-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.85rem;
+  background: linear-gradient(125deg, var(--ariadne-seafoam), var(--ariadne-gold));
+  color: var(--ariadne-ink);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.ariadne-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 0.97;
+}
+
+.ariadne-subtitle {
+  margin-top: 1rem;
+  max-width: 62ch;
+  color: color-mix(in srgb, var(--ariadne-ink) 82%, var(--ariadne-forest) 18%);
+  font-size: 1.05rem;
+}
+
+.ariadne-card {
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--ariadne-ivory) 80%, var(--ariadne-seafoam) 20%),
+    color-mix(in srgb, var(--ariadne-ivory) 76%, var(--ariadne-gold) 24%)
+  );
+  border: 1px solid color-mix(in srgb, var(--ariadne-seafoam) 55%, var(--ariadne-gold) 45%);
+  border-radius: 28px;
+  padding: 1.25rem 1.3rem;
+  box-shadow: 0 18px 34px rgba(33, 74, 58, 0.16);
+}
+
+.ariadne-card h2 {
+  margin: 0 0 0.55rem;
+  color: color-mix(in srgb, var(--ariadne-gold) 68%, var(--ariadne-forest) 32%);
+}
+
+.ariadne-card p {
+  margin: 0;
+  color: color-mix(in srgb, var(--ariadne-ink) 80%, var(--ariadne-forest) 20%);
+}
+
+.ariadne-trope-prompt {
+  margin-top: 0.95rem;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--ariadne-gold) 66%, var(--ariadne-forest) 34%);
+}
+
+.ariadne-trope-chips {
+  margin-top: 0.55rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.4rem, 1fr));
+  gap: 0.8rem;
+}
+
+.ariadne-trope-chip {
+  border: 1px solid color-mix(in srgb, var(--ariadne-seafoam) 55%, var(--ariadne-gold) 45%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ariadne-ivory) 82%, var(--ariadne-seafoam) 18%);
+  color: color-mix(in srgb, var(--ariadne-ink) 84%, var(--ariadne-forest) 16%);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.34rem 0.68rem;
+  cursor: pointer;
+}
+
+.ariadne-flower-chip {
+  position: relative;
+  isolation: isolate;
+  border: none;
+  border-radius: 0;
+  width: min(100%, 200px);
+  justify-self: center;
+  min-height: 0;
+  aspect-ratio: 1;
+  padding: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  text-wrap: balance;
+  background: transparent;
+  color: color-mix(in srgb, var(--ariadne-ink) 92%, black 8%);
+  font-size: 0.84rem;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(20, 20, 20, 0.16);
+  --flower-color: #9fc5b9;
+  --flower-ink: #223b32;
+  --flower-core-inset: calc(50% - ((30.259% + 3.142px) / 0.964 - 5.191px));
+  z-index: 0;
+  --g: /calc(30.259% + 3.142px) calc(30.259% + 3.142px)
+    radial-gradient(
+      #0000 calc(70% - 5px),
+      #000 calc(71% - 5px) 70%,
+      #0000 71%
+    ) no-repeat;
+}
+
+.ariadne-flower-chip::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.ariadne-flower-chip::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: var(--flower-core-inset);
+  border-radius: 50%;
+  background: transparent;
+  z-index: -1;
+}
+
+.ariadne-flower-chip::before {
+  inset: 0;
+  z-index: -2;
+  background: color-mix(in srgb, var(--flower-color) 58%, white 42%);
+  -webkit-mask:
+    radial-gradient(
+      100% 100%,
+      #0000 calc((30.259% + 3.142px) / 0.964 - 5.191px),
+      #000 calc((30.259% + 3.142px) / 0.964 - 5.191px + 1px)
+    ) intersect,
+    100% 50% var(--g),
+    81.174% 89.092% var(--g),
+    38.874% 98.746% var(--g),
+    4.952% 71.694% var(--g),
+    4.952% 28.306% var(--g),
+    38.874% 1.254% var(--g),
+    81.174% 10.908% var(--g);
+  mask:
+    radial-gradient(
+      100% 100%,
+      #0000 calc((30.259% + 3.142px) / 0.964 - 5.191px),
+      #000 calc((30.259% + 3.142px) / 0.964 - 5.191px + 1px)
+    ) intersect,
+    100% 50% var(--g),
+    81.174% 89.092% var(--g),
+    38.874% 98.746% var(--g),
+    4.952% 71.694% var(--g),
+    4.952% 28.306% var(--g),
+    38.874% 1.254% var(--g),
+    81.174% 10.908% var(--g);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--flower-color) 78%, var(--ariadne-gold) 22%),
+    0 9px 16px rgba(33, 74, 58, 0.15);
+}
+
+.ariadne-trope-chip.active {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ariadne-seafoam) 60%, var(--ariadne-ivory) 40%),
+    color-mix(in srgb, var(--ariadne-gold) 58%, var(--ariadne-seafoam) 42%)
+  );
+  border-color: color-mix(in srgb, var(--ariadne-gold) 62%, var(--ariadne-forest) 38%);
+}
+
+.ariadne-flower-chip.active {
+  background: transparent;
+  border: none;
+  color: var(--flower-ink);
+  text-shadow: none;
+  animation: ariadne-bloom 440ms cubic-bezier(0.2, 0.9, 0.25, 1) both;
+}
+
+.ariadne-flower-chip.active::before {
+  background: var(--flower-color);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--flower-color) 88%, var(--ariadne-gold) 12%),
+    0 11px 18px rgba(33, 74, 58, 0.2);
+}
+
+.ariadne-flower-chip.active::after {
+  background: var(--flower-color);
+}
+
+@keyframes ariadne-bloom {
+  0% {
+    transform: scale(0.9);
+    filter: saturate(0.88);
+  }
+  65% {
+    transform: scale(1.06);
+    filter: saturate(1.1);
+  }
+  100% {
+    transform: scale(1);
+    filter: saturate(1);
+  }
+}
+
+.ariadne-trope-feature {
+  margin-top: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--ariadne-seafoam) 50%, var(--ariadne-gold) 50%);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--ariadne-ivory) 74%, var(--ariadne-seafoam) 26%);
+  padding: 0.75rem 0.8rem;
+}
+
+.ariadne-trope-feature h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--ariadne-gold) 68%, var(--ariadne-forest) 32%);
+}
+
+.ariadne-trope-feature p {
+  margin: 0;
+}
+
+.ariadne-seed-books {
+  margin-top: 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--ariadne-seafoam) 42%, var(--ariadne-gold) 58%);
+  background: color-mix(in srgb, var(--ariadne-ivory) 88%, white 12%);
+  border-radius: 12px;
+  padding: 0.65rem 0.7rem;
+}
+
+.ariadne-seed-books-title {
+  font-weight: 700;
+  color: color-mix(in srgb, var(--ariadne-gold) 64%, var(--ariadne-forest) 36%);
+}
+
+.ariadne-seed-books-empty {
+  margin-top: 0.38rem;
+  font-size: 0.94rem;
+}
+
+.ariadne-seed-books ul {
+  margin: 0.45rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.ariadne-seed-books li {
+  margin: 0.25rem 0;
+}
+
+.ariadne-seed-books a {
+  color: color-mix(in srgb, var(--ariadne-forest) 72%, var(--ariadne-gold) 28%);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+.ariadne-seed-books a:hover {
+  color: color-mix(in srgb, var(--ariadne-forest) 50%, var(--ariadne-gold) 50%);
+}
+
+@media (max-width: 700px) {
+  .ariadne-shell {
+    width: min(100%, 100vw);
+    padding: 2.2rem 1rem 2.8rem;
+  }
+
+  .ariadne-hero {
+    margin-bottom: 1.25rem;
+    padding-top: 2.15rem;
+  }
+
+  .ariadne-top-back-link {
+    top: 0;
+    height: 1.85rem;
+    font-size: 0.85rem;
+    padding: 0 0.56rem;
+  }
+
+  .ariadne-hero h1 {
+    font-size: clamp(1.55rem, 8.6vw, 2.15rem);
+    line-height: 1.12;
+  }
+
+  .ariadne-subtitle {
+    margin-top: 0.72rem;
+    font-size: 0.95rem;
+  }
+
+  .ariadne-trope-chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .ariadne-trope-chip {
+    font-size: 0.79rem;
+  }
+
+  .ariadne-flower-chip {
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 170px;
+    padding: 0.86rem;
+  }
+}

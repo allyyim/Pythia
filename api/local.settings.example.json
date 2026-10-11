@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FOUNDRY_ENDPOINT": "https://YOUR-RESOURCE.openai.azure.com/",
+    "FOUNDRY_DEPLOYMENT": "YOUR-GPT-4O-DEPLOYMENT",
+    "CATALOG_USER_AGENT": "Pythia/1.0 (contact: YOUR-CONTACT-ADDRESS)"
+  },
+  "Host": { "CORS": "http://localhost:5173", "CORSCredentials": false }
+}

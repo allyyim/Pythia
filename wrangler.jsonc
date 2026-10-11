@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pythia-recommendations",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "FOUNDRY_ENDPOINT": "https://alison-hackathon.openai.azure.com/",
+    "FOUNDRY_DEPLOYMENT": "gpt-4o-mini",
+    "CATALOG_USER_AGENT": "Pythia/1.0 (book recommendations)",
+    "ALLOWED_ORIGIN": "https://allyyim.github.io"
+  },
+  "ratelimits": [
+    {
+      "name": "RECOMMENDATION_LIMITER",
+      "namespace_id": "742918",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
+  ]
+}

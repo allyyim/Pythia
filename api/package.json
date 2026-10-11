@@ -1,0 +1,18 @@
+{
+  "name": "pythia-recommendations-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/functions.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "func start",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.0",
+    "@azure/identity": "^4.13.0"
+  }
+}

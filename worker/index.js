@@ -22,6 +22,18 @@ function jsonResponse(body, status, origin, env, extraHeaders = {}) {
   });
 }
 
+async function fetchUpstream(url, options) {
+  const hostname = new URL(url).hostname;
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) console.error('Recommendation upstream response error:', hostname, response.status);
+    return response;
+  } catch (error) {
+    console.error('Recommendation upstream network error:', hostname, error instanceof Error ? error.name : 'UNKNOWN');
+    throw error;
+  }
+}
+
 async function readJson(request, signal) {
   if (Number(request.headers.get('content-length')) > MAX_BODY_BYTES) {
     throw new ApiError(413, 'INPUT_TOO_LARGE', 'Request body must not exceed 8 KB.');
@@ -102,7 +114,7 @@ export async function handleRequest(request, env) {
     if (!config.apiKey) {
       throw new ApiError(503, 'NOT_CONFIGURED', 'The recommendation service is not configured. Contact the site owner.');
     }
-    const result = await recommend(body, { config, signal });
+    const result = await recommend(body, { config, signal, fetchImpl: fetchUpstream });
     return new Response(JSON.stringify(result), { status: 200, headers });
   } catch (error) {
     const known = error instanceof ApiError;

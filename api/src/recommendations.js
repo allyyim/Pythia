@@ -33,6 +33,9 @@ export function loadConfig(env = process.env) {
     endpoint: endpoint.origin,
     deployment: env.FOUNDRY_DEPLOYMENT,
     apiKey: env.FOUNDRY_API_KEY,
+    tenantId: env.FOUNDRY_TENANT_ID,
+    clientId: env.FOUNDRY_CLIENT_ID,
+    clientSecret: env.FOUNDRY_CLIENT_SECRET,
     googleKey: env.GOOGLE_BOOKS_API_KEY,
     catalogAgent: env.CATALOG_USER_AGENT || 'Pythia/1.0 (book discovery)',
   };
@@ -120,6 +123,9 @@ const selectionSchema = (ids) => ({ type: 'object', properties: { picks: { type:
 
 export async function recommend(body, { config, fetchImpl = fetch, getToken, signal = AbortSignal.timeout(75000) }) {
   const request = validateRequest(body);
+  if (!config.apiKey && typeof getToken !== 'function') {
+    throw new ApiError(503, 'AI_AUTH_UNAVAILABLE', 'The recommendation service authentication is not configured. Contact the site owner.');
+  }
   const auth = config.apiKey ? { 'api-key': config.apiKey } : { Authorization: `Bearer ${await getToken(signal)}` };
   const model = async (name, schema, instruction, data) => {
     const payload = await fetchJson(`${config.endpoint}/openai/deployments/${encodeURIComponent(config.deployment)}/chat/completions?api-version=2024-10-21`, {

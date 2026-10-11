@@ -34,6 +34,40 @@ async function fetchUpstream(url, options) {
   }
 }
 
+async function requestEntraToken(env, signal) {
+  if (!/^[a-zA-Z0-9.-]{1,200}$/.test(env.FOUNDRY_TENANT_ID ?? '') || !/^[0-9a-f-]{36}$/i.test(env.FOUNDRY_CLIENT_ID ?? '') || !env.FOUNDRY_CLIENT_SECRET) {
+    throw new ApiError(503, 'AI_AUTH_UNAVAILABLE', 'Microsoft Entra authentication is not configured. Set the tenant ID, application client ID, and client secret as Worker secrets.');
+  }
+  const tokenUrl = `https://login.microsoftonline.com/${encodeURIComponent(env.FOUNDRY_TENANT_ID)}/oauth2/v2.0/token`;
+  let response;
+  try {
+    response = await fetchUpstream(tokenUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        client_id: env.FOUNDRY_CLIENT_ID,
+        client_secret: env.FOUNDRY_CLIENT_SECRET,
+        scope: 'https://cognitiveservices.azure.com/.default',
+        grant_type: 'client_credentials',
+      }),
+      signal: AbortSignal.any([signal, AbortSignal.timeout(10000)]),
+    });
+  } catch {
+    throw new ApiError(503, 'AI_AUTH_UNAVAILABLE', 'Could not reach Microsoft Entra to authenticate with Azure OpenAI.');
+  }
+  if (!response.ok) {
+    throw new ApiError(503, 'AI_AUTH_UNAVAILABLE', 'Microsoft Entra rejected the service-principal credentials. Check the tenant, application ID, and client secret in Worker secrets.');
+  }
+  let payload;
+  try { payload = await response.json(); } catch {
+    throw new ApiError(503, 'AI_AUTH_UNAVAILABLE', 'Microsoft Entra returned an invalid authentication response.');
+  }
+  if (typeof payload?.access_token !== 'string' || !payload.access_token) {
+    throw new ApiError(503, 'AI_AUTH_UNAVAILABLE', 'Microsoft Entra did not issue an Azure OpenAI access token.');
+  }
+  return payload.access_token;
+}
+
 async function readJson(request, signal) {
   if (Number(request.headers.get('content-length')) > MAX_BODY_BYTES) {
     throw new ApiError(413, 'INPUT_TOO_LARGE', 'Request body must not exceed 8 KB.');
@@ -111,10 +145,14 @@ export async function handleRequest(request, env) {
     const { success } = await env.RECOMMENDATION_LIMITER.limit({ key: request.headers.get('CF-Connecting-IP') ?? 'unknown' });
     if (!success) throw new ApiError(429, 'RATE_LIMITED', 'Too many requests. Please try again in a minute.');
     const config = loadConfig(env);
-    if (!config.apiKey) {
-      throw new ApiError(503, 'NOT_CONFIGURED', 'The recommendation service is not configured. Contact the site owner.');
+    const hasServicePrincipal = Boolean(config.tenantId && config.clientId && config.clientSecret);
+    if (!config.apiKey && !hasServicePrincipal) {
+      throw new ApiError(503, 'NOT_CONFIGURED', 'Configure Microsoft Entra service-principal credentials or a Foundry API key as Worker secrets.');
     }
-    const result = await recommend(body, { config, signal, fetchImpl: fetchUpstream });
+    let tokenPromise;
+    const getToken = (abortSignal) => tokenPromise ??= requestEntraToken(env, abortSignal);
+    const authenticatedConfig = hasServicePrincipal ? { ...config, apiKey: undefined } : config;
+    const result = await recommend(body, { config: authenticatedConfig, signal, fetchImpl: fetchUpstream, getToken });
     return new Response(JSON.stringify(result), { status: 200, headers });
   } catch (error) {
     const known = error instanceof ApiError;

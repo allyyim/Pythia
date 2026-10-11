@@ -58,6 +58,49 @@ test('rate limits requests before calling catalogs or Foundry', async () => {
   }
 });
 
+test('authenticates with Microsoft Entra when Azure resource keys are disabled', async () => {
+  const calls = [];
+  const previousFetch = globalThis.fetch;
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url: String(url), options });
+    if (String(url).includes('login.microsoftonline.com')) {
+      const form = new URLSearchParams(options.body);
+      assert.equal(form.get('client_id'), '11111111-1111-1111-1111-111111111111');
+      assert.equal(form.get('scope'), 'https://cognitiveservices.azure.com/.default');
+      assert.equal(form.get('grant_type'), 'client_credentials');
+      return Response.json({ access_token: 'mock-entra-token' });
+    }
+    if (String(url).includes('chat/completions')) {
+      assert.equal(options.headers.Authorization, 'Bearer mock-entra-token');
+      assert.equal(options.headers['api-key'], undefined);
+      const name = JSON.parse(options.body).response_format.json_schema.name;
+      const output = name === 'catalog_plan'
+        ? { queries: ['forest mystery', 'family secrets', 'quiet suspense'] }
+        : { picks: Array.from({ length: 5 }, (_, index) => ({ id: `c${index + 1}`, reason: 'Its catalog themes match the quiet mystery and close family relationships you requested.' })) };
+      return Response.json({ choices: [{ finish_reason: 'stop', message: { content: JSON.stringify(output) } }] });
+    }
+    assert.equal(options.headers.Authorization, undefined);
+    assert.equal(options.headers['api-key'], undefined);
+    return Response.json({ docs: Array.from({ length: 8 }, (_, index) => ({ key: `/works/OL${index + 1}W`, title: `Dynamic title ${index + 1}`, author_name: [`Author ${index + 1}`] })) });
+  };
+  try {
+    const response = await handleRequest(request(JSON.stringify({ mode: 'vibes', value: 'Quiet mystery about family secrets' })), {
+      ...env,
+      FOUNDRY_API_KEY: 'stale-key-is-ignored',
+      FOUNDRY_TENANT_ID: 'contoso.onmicrosoft.com',
+      FOUNDRY_CLIENT_ID: '11111111-1111-1111-1111-111111111111',
+      FOUNDRY_CLIENT_SECRET: 'test-only-client-secret',
+    });
+    const result = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(result.recommendations.length, 5);
+    assert.equal(calls.filter((call) => call.url.includes('login.microsoftonline.com')).length, 1);
+    assert.equal(calls.filter((call) => call.url.includes('chat/completions')).length, 2);
+  } finally {
+    globalThis.fetch = previousFetch;
+  }
+});
+
 test('returns AI selections from live catalog data without forwarding secrets to catalog requests', async () => {
   const calls = [];
   const previousFetch = globalThis.fetch;

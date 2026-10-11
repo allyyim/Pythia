@@ -114,13 +114,16 @@ The workflow in `.github/workflows/deploy-pages.yml` builds and deploys the site
 ### Cloudflare Worker backend (deploy before Pages)
 
 1. Create a Cloudflare account and install the repository dependencies with `npm ci` from the repository root. Sign Wrangler into Cloudflare with `npx wrangler login`. Register a free `workers.dev` subdomain in the Cloudflare dashboard; Wrangler requires this before deploying the public API URL.
-2. Add the rotated Foundry key as a Worker secret.
+2. Because this Azure resource has key authentication disabled, create a Microsoft Entra app registration in the same tenant as the Azure OpenAI resource. Record its **Directory (tenant) ID** and **Application (client) ID**. Create a client secret under **Certificates & secrets** and copy its value once. In the Azure OpenAI resource, open **Access control (IAM)** and assign **Cognitive Services OpenAI User** to the app registration's service principal.
+3. Store the identity credentials as encrypted Cloudflare Worker secrets. Wrangler prompts securely; do not put these values in source files or `VITE_*` variables:
 
    ```bash
-   npx wrangler secret put FOUNDRY_API_KEY
+   npx wrangler secret put FOUNDRY_TENANT_ID
+   npx wrangler secret put FOUNDRY_CLIENT_ID
+   npx wrangler secret put FOUNDRY_CLIENT_SECRET
    ```
 
-3. Review `wrangler.jsonc`: it contains the non-secret Azure OpenAI endpoint, deployment name, Pages origin, and a per-IP limit of five requests per minute. Change `ALLOWED_ORIGIN` if the site uses a custom domain. The rate-limit `namespace_id` must be unique in your Cloudflare account; choose another integer if it conflicts.
+4. Review `wrangler.jsonc`: it contains the non-secret Azure OpenAI endpoint, deployment name, Pages origin, and a per-IP limit of five requests per minute. Change `ALLOWED_ORIGIN` if the site uses a custom domain.
 4. Deploy the Worker from the repository root:
 
    ```bash
@@ -132,7 +135,7 @@ The workflow in `.github/workflows/deploy-pages.yml` builds and deploys the site
 
 The Worker uses Cloudflare's free-plan request allowance and a Cloudflare rate-limit binding. Rate limits are location-scoped and approximate, not a global spend guarantee. **CORS is not authentication**; non-browser callers can bypass it. Set Azure OpenAI quotas/budget alerts and monitor Worker and model usage. Requests use two model calls, up to three catalog searches, at most 60 candidates, and a 75-second backend deadline. Catalog or Foundry failures are explicit; there are no hardcoded recommendation fallbacks. The free Worker host does not make Azure model inference free.
 
-The Foundry endpoint must be an Azure OpenAI resource endpoint (not a Foundry project URL), and its deployment must support strict structured outputs. Keep the API key in Wrangler's encrypted Worker secrets. The Worker logs only error codes, not prompts, upstream responses, or credentials. Reading preferences are sent to Azure OpenAI and catalog providers; avoid sending sensitive personal data.
+The Foundry endpoint must be an Azure OpenAI resource endpoint (not a Foundry project URL), and its deployment must support strict structured outputs. Keep service-principal credentials in Wrangler's encrypted Worker secrets; the Worker obtains short-lived Entra tokens and never exposes the client secret. The Worker logs only error codes and upstream host/status, not prompts, response bodies, or credentials.
 
 The original Azure Functions adapter remains under `api/` for deployments that prefer Azure Functions, but it is not needed for the Cloudflare setup.
 
